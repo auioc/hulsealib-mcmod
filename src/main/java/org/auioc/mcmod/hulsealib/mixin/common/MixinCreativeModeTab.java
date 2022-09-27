@@ -1,6 +1,6 @@
 package org.auioc.mcmod.hulsealib.mixin.common;
 
-import org.auioc.mcmod.hulsealib.mixin.common.api.IMixinCreativeModeTab;
+import org.auioc.mcmod.hulsealib.game.mixin.common.IMixinCreativeModeTab;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
