@@ -1,5 +1,6 @@
 package org.auioc.mcmod.hulsealib;
 
+import org.auioc.mcmod.hulsealib.game.command.HLCommandArguments;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -39,7 +40,9 @@ public final class Initialization {
 
         public void registerConfig() {}
 
-        private void modSetup() {}
+        private void modSetup() {
+            HLCommandArguments.init();
+        }
 
         private void forgeSetup() {
 

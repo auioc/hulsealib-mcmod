@@ -1,3 +1,5 @@
 {
-    "hulsealib.title": "HulseaLib"
+    "hulsealib.title": "HulseaLib",
+
+    "hulsealib.argument.creative_mode_tab.unknown": "未知的创造模式物品栏标签\"%s\""
 }

@@ -1,3 +1,5 @@
 {
-    "hulsealib.title": "HulseaLib"
+    "hulsealib.title": "HulseaLib",
+
+    "hulsealib.argument.creative_mode_tab.unknown": "Unknown creative mod tab \"%s\""
 }
