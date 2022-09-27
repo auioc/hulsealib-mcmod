@@ -3,7 +3,7 @@ package org.auioc.mcmod.hulsealib.game.alchemy;
 import java.util.ArrayList;
 import java.util.function.Supplier;
 import javax.annotation.Nullable;
-import org.auioc.mcmod.arnicalib.utils.game.EffectUtils;
+import org.auioc.mcmod.arnicalib.game.effect.EffectUtils;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.item.Item;

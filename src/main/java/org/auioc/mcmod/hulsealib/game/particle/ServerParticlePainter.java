@@ -2,8 +2,8 @@ package org.auioc.mcmod.hulsealib.game.particle;
 
 import java.util.function.Consumer;
 import org.auioc.mcmod.arnicalib.base.phys.Shape;
+import org.auioc.mcmod.arnicalib.game.nbt.NbtUtils;
 import org.auioc.mcmod.arnicalib.game.particle.ParticlePainterOptions;
-import org.auioc.mcmod.arnicalib.utils.game.NbtUtils;
 import org.auioc.mcmod.hulsealib.mod.common.network.HLPacketHandler;
 import org.auioc.mcmod.hulsealib.mod.common.network.packet.client.ClientboundDrawParticleShapePacket;
 import net.minecraft.core.Vec3i;

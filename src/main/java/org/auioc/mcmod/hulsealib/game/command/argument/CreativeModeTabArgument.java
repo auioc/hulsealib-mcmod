@@ -3,7 +3,7 @@ package org.auioc.mcmod.hulsealib.game.command.argument;
 import java.util.Arrays;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Stream;
-import org.auioc.mcmod.arnicalib.utils.game.TextUtils;
+import org.auioc.mcmod.arnicalib.game.chat.TextUtils;
 import org.auioc.mcmod.hulsealib.HulseaLib;
 import org.auioc.mcmod.hulsealib.mixin.common.api.IMixinCreativeModeTab;
 import com.mojang.brigadier.StringReader;
