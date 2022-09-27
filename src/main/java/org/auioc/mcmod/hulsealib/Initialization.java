@@ -1,6 +1,7 @@
 package org.auioc.mcmod.hulsealib;
 
 import org.auioc.mcmod.hulsealib.game.command.HLCommandArguments;
+import org.auioc.mcmod.hulsealib.mod.common.itemgroup.HLCreativeModeTabs;
 import org.auioc.mcmod.hulsealib.mod.common.network.HLPacketHandler;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -47,7 +48,7 @@ public final class Initialization {
         }
 
         private void forgeSetup() {
-
+            HLCreativeModeTabs.init();
         }
 
     }

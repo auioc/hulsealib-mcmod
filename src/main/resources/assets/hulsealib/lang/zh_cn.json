@@ -1,5 +1,7 @@
 {
     "hulsealib.title": "HulseaLib",
 
+    "itemGroup.vanillaHiddenItems": "原版隐藏物品",
+
     "hulsealib.argument.creative_mode_tab.unknown": "未知的创造模式物品栏标签\"%s\""
 }
