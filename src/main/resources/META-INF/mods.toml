@@ -1,0 +1,34 @@
+modLoader="javafml"
+loaderVersion="[40,)"
+license="GNU GPLv3"
+issueTrackerURL="https://github.com/auioc/hulsealib-mcmod/issues"
+
+[[mods]]
+modId="hulsealib"
+version="${file.jarVersion}"
+updateJSONURL="https://hi.auioc.org/hulsealib-mcmod/update/1.18.2.json"
+displayName="HulseaLib"
+displayURL="http://hi.auioc.org/hulsealib-mcmod/"
+credits="AUIOC"
+authors="WakelssSloth56"
+description='''
+'''
+
+[[dependencies.hulsealib]]
+    modId="forge"
+    mandatory=true
+    versionRange="[40.1.0,)"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.hulsealib]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.18.2,1.19)"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.hulsealib]]
+    modId="arnicalib"
+    mandatory=true
+    versionRange="[5.5.0,)"
+    ordering="NONE"
+    side="BOTH"
