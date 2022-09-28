@@ -10,7 +10,9 @@
         "server.MixinServerPlayer",
         "server.MixinLivingEntity",
         "server.MixinCatRelaxOnOwnerGoal",
-        "server.MixinPiglinAi"
+        "server.MixinPiglinAi",
+        "server.MixinEyeOfEnder",
+        "server.MixinEnderEyeItem"
     ],
     "client": [],
     "server": [],

@@ -3,9 +3,11 @@ package org.auioc.mcmod.hulsealib.mod.server.event;
 import java.util.List;
 import java.util.Random;
 import java.util.UUID;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 import org.auioc.mcmod.arnicalib.game.entity.MobStance;
 import org.auioc.mcmod.hulsealib.game.event.server.CatMorningGiftChanceEvent;
+import org.auioc.mcmod.hulsealib.game.event.server.EyeOfEnderSurvivableEvent;
 import org.auioc.mcmod.hulsealib.game.event.server.FishingRodCastEvent;
 import org.auioc.mcmod.hulsealib.game.event.server.ItemHurtEvent;
 import org.auioc.mcmod.hulsealib.game.event.server.LivingEatAddEffectEvent;
@@ -19,6 +21,7 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.animal.Cat;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.EyeOfEnder;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.MinecraftForge;
@@ -36,6 +39,12 @@ public final class HLServerEventFactory {
         var event = new CatMorningGiftChanceEvent(cat, ownerPlayer);
         BUS.post(event);
         return event.getChance();
+    }
+
+    public static Function<Random, Boolean> onEyeOfEnderSetSurvivable(ServerPlayer player, EyeOfEnder eye) {
+        var event = new EyeOfEnderSurvivableEvent(player, eye);
+        BUS.post(event);
+        return event.getSurvivable();
     }
 
     public static MobStance onPiglinChooseEvent(LivingEntity target) {
