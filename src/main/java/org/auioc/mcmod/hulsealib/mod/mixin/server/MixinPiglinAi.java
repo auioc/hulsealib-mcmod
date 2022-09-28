@@ -20,7 +20,7 @@ public class MixinPiglinAi {
         allow = 1
     )
     private static void isWearingGold(LivingEntity p_34809_, CallbackInfoReturnable<Boolean> cri) {
-        var stance = HLServerEventFactory.onPiglinChooseEvent(p_34809_);
+        var stance = HLServerEventFactory.onPiglinChooseStanceEvent(p_34809_);
         if (stance == MobStance.NEUTRAL) {
             cri.setReturnValue(true);
         } else if (stance == MobStance.HOSTILE) {

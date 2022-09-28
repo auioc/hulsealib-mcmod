@@ -31,10 +31,6 @@ public final class HLServerEventFactory {
 
     private static final IEventBus BUS = MinecraftForge.EVENT_BUS;
 
-    public static boolean onServerPlayerSendMessage(ServerPlayer player, Component message, ChatType type, UUID uuid) {
-        return BUS.post(new ServerPlayerSendMessageEvent(player, message, type, uuid));
-    }
-
     public static double onCatSetMorningGiftChance(Cat cat, Player ownerPlayer) {
         var event = new CatMorningGiftChanceEvent(cat, ownerPlayer);
         BUS.post(event);
@@ -45,12 +41,6 @@ public final class HLServerEventFactory {
         var event = new EyeOfEnderSurvivableEvent(player, eye);
         BUS.post(event);
         return event.getSurvivable();
-    }
-
-    public static MobStance onPiglinChooseEvent(LivingEntity target) {
-        var event = new PiglinStanceEvent(target);
-        BUS.post(event);
-        return event.getStance();
     }
 
     // Coremod hulsealib.fishing_rod_item
@@ -73,6 +63,16 @@ public final class HLServerEventFactory {
             event.getEffects().clear();
         }
         return event.getEffects();
+    }
+
+    public static MobStance onPiglinChooseStanceEvent(LivingEntity target) {
+        var event = new PiglinStanceEvent(target);
+        BUS.post(event);
+        return event.getStance();
+    }
+
+    public static boolean onServerPlayerSendMessage(ServerPlayer player, Component message, ChatType type, UUID uuid) {
+        return BUS.post(new ServerPlayerSendMessageEvent(player, message, type, uuid));
     }
 
 }
