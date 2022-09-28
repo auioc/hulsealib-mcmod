@@ -1,4 +1,4 @@
-package org.auioc.mcmod.hulsealib.game.mixin.server;
+package org.auioc.mcmod.hulsealib.mod.mixinapi.server;
 
 import java.util.Random;
 import java.util.function.Function;

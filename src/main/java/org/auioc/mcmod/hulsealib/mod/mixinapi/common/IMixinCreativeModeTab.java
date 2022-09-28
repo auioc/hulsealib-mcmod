@@ -1,4 +1,4 @@
-package org.auioc.mcmod.hulsealib.game.mixin.common;
+package org.auioc.mcmod.hulsealib.mod.mixinapi.common;
 
 public interface IMixinCreativeModeTab {
 

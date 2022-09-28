@@ -5,7 +5,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.stream.Stream;
 import org.auioc.mcmod.arnicalib.game.chat.TextUtils;
 import org.auioc.mcmod.hulsealib.HulseaLib;
-import org.auioc.mcmod.hulsealib.game.mixin.common.IMixinCreativeModeTab;
+import org.auioc.mcmod.hulsealib.mod.mixinapi.common.IMixinCreativeModeTab;
 import com.mojang.brigadier.StringReader;
 import com.mojang.brigadier.arguments.ArgumentType;
 import com.mojang.brigadier.context.CommandContext;

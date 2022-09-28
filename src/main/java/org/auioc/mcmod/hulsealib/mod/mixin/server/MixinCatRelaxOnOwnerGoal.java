@@ -1,4 +1,4 @@
-package org.auioc.mcmod.hulsealib.mixin.server;
+package org.auioc.mcmod.hulsealib.mod.mixin.server;
 
 import javax.annotation.Nullable;
 import org.auioc.mcmod.hulsealib.mod.server.event.HLServerEventFactory;

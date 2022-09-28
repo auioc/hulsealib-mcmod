@@ -1,6 +1,6 @@
-package org.auioc.mcmod.hulsealib.mixin.server;
+package org.auioc.mcmod.hulsealib.mod.mixin.server;
 
-import org.auioc.mcmod.hulsealib.game.mixin.server.IMixinEyeOfEnder;
+import org.auioc.mcmod.hulsealib.mod.mixinapi.server.IMixinEyeOfEnder;
 import org.auioc.mcmod.hulsealib.mod.server.event.HLServerEventFactory;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;

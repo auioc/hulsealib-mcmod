@@ -1,4 +1,4 @@
-package org.auioc.mcmod.hulsealib.mixin.server;
+package org.auioc.mcmod.hulsealib.mod.mixin.server;
 
 import java.util.ArrayList;
 import java.util.List;

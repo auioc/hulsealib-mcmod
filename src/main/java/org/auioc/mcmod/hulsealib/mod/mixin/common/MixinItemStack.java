@@ -1,4 +1,4 @@
-package org.auioc.mcmod.hulsealib.mixin.common;
+package org.auioc.mcmod.hulsealib.mod.mixin.common;
 
 import org.auioc.mcmod.hulsealib.mod.common.event.HLCommonEventFactory;
 import org.spongepowered.asm.mixin.Mixin;

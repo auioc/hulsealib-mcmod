@@ -1,4 +1,4 @@
-package org.auioc.mcmod.hulsealib.mixin.server;
+package org.auioc.mcmod.hulsealib.mod.mixin.server;
 
 import org.auioc.mcmod.arnicalib.game.entity.MobStance;
 import org.auioc.mcmod.hulsealib.mod.server.event.HLServerEventFactory;
