@@ -1,7 +1,7 @@
 package org.auioc.mcmod.hulsealib.mod.common.itemgroup.impl;
 
 import org.auioc.mcmod.arnicalib.game.item.ItemPredicates;
-import org.auioc.mcmod.arnicalib.utils.game.VanillaPredicates;
+import org.auioc.mcmod.arnicalib.game.registry.VanillaPredicates;
 import net.minecraft.core.NonNullList;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;

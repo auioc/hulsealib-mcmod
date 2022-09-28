@@ -3,6 +3,7 @@ package org.auioc.mcmod.hulsealib;
 import org.auioc.mcmod.hulsealib.game.command.HLCommandArguments;
 import org.auioc.mcmod.hulsealib.mod.common.itemgroup.HLCreativeModeTabs;
 import org.auioc.mcmod.hulsealib.mod.common.network.HLPacketHandler;
+import org.auioc.mcmod.hulsealib.mod.server.event.HLServerEventHandler;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -68,7 +69,9 @@ public final class Initialization {
 
         public void modSetup() {}
 
-        public void forgeSetup() {}
+        public void forgeSetup() {
+            forgeEventBus.register(HLServerEventHandler.class);
+        }
 
     }
 
