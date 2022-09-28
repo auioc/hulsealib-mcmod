@@ -1,11 +1,19 @@
 package org.auioc.mcmod.hulsealib.mod.server.event;
 
+import java.util.Random;
+import javax.annotation.Nullable;
 import org.auioc.mcmod.arnicalib.game.entity.MobStance;
 import org.auioc.mcmod.hulsealib.game.event.server.CatMorningGiftChanceEvent;
+import org.auioc.mcmod.hulsealib.game.event.server.FishingRodCastEvent;
+import org.auioc.mcmod.hulsealib.game.event.server.ItemHurtEvent;
 import org.auioc.mcmod.hulsealib.game.event.server.PiglinStanceEvent;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.animal.Cat;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 
@@ -23,6 +31,20 @@ public final class HLServerEventFactory {
         var event = new PiglinStanceEvent(target);
         BUS.post(event);
         return event.getStance();
+    }
+
+    // Coremod hulsealib.fishing_rod_item
+    public static FishingRodCastEvent.Pre preFishingRodCast(Player player, Level level, ItemStack fishingRod, int speedBonus, int luckBonus) {
+        var event = new FishingRodCastEvent.Pre((ServerPlayer) player, (ServerLevel) level, fishingRod, speedBonus, luckBonus);
+        BUS.post(event);
+        return event;
+    }
+
+    // Coremod hulsealib.item_stack
+    public static int onItemHurt(ItemStack itemStack, int damage, Random random, @Nullable ServerPlayer player) {
+        var event = new ItemHurtEvent(itemStack, damage, random, player);
+        BUS.post(event);
+        return event.getDamage();
     }
 
 }
