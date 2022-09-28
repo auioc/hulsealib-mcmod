@@ -6,7 +6,8 @@
         "common.MixinCreativeModeTab",
         "common.MixinFoodData",
         "common.MixinItemStack",
-        "common.MixinPistonBaseBlock"
+        "common.MixinPistonBaseBlock",
+        "server.MixinCatRelaxOnOwnerGoal"
     ],
     "client": [],
     "server": [],
