@@ -1,5 +1,6 @@
 package org.auioc.mcmod.hulsealib.mod.server.event;
 
+import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 import javax.annotation.Nullable;
@@ -7,12 +8,14 @@ import org.auioc.mcmod.arnicalib.game.entity.MobStance;
 import org.auioc.mcmod.hulsealib.game.event.server.CatMorningGiftChanceEvent;
 import org.auioc.mcmod.hulsealib.game.event.server.FishingRodCastEvent;
 import org.auioc.mcmod.hulsealib.game.event.server.ItemHurtEvent;
+import org.auioc.mcmod.hulsealib.game.event.server.LivingEatAddEffectEvent;
 import org.auioc.mcmod.hulsealib.game.event.server.PiglinStanceEvent;
 import org.auioc.mcmod.hulsealib.game.event.server.ServerPlayerSendMessageEvent;
 import net.minecraft.network.chat.ChatType;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.animal.Cat;
 import net.minecraft.world.entity.player.Player;
@@ -53,6 +56,14 @@ public final class HLServerEventFactory {
         var event = new ItemHurtEvent(itemStack, damage, random, player);
         BUS.post(event);
         return event.getDamage();
+    }
+
+    public static List<MobEffectInstance> onLivingEatAddEffect(LivingEntity entity, ItemStack food, List<MobEffectInstance> effects) {
+        LivingEatAddEffectEvent event = new LivingEatAddEffectEvent(entity, food, effects);
+        if (BUS.post(event)) {
+            event.getEffects().clear();
+        }
+        return event.getEffects();
     }
 
 }

@@ -8,6 +8,7 @@
         "common.MixinItemStack",
         "common.MixinPistonBaseBlock",
         "server.MixinServerPlayer",
+        "server.MixinLivingEntity",
         "server.MixinCatRelaxOnOwnerGoal",
         "server.MixinPiglinAi"
     ],
