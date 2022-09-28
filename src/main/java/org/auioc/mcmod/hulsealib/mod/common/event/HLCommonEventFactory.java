@@ -1,10 +1,12 @@
 package org.auioc.mcmod.hulsealib.mod.common.event;
 
+import org.auioc.mcmod.hulsealib.game.event.common.ItemInventoryTickEvent;
 import org.auioc.mcmod.hulsealib.game.event.common.LivingEatEvent;
 import org.auioc.mcmod.hulsealib.game.event.common.PistonPushableEvent;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -15,6 +17,10 @@ import net.minecraftforge.eventbus.api.IEventBus;
 public final class HLCommonEventFactory {
 
     private static final IEventBus BUS = MinecraftForge.EVENT_BUS;
+
+    public static boolean onSelectedItemItemInventoryTick(Player player, Level level, ItemStack itemStack, int index) {
+        return BUS.post(new ItemInventoryTickEvent.Selected(player, level, itemStack, index));
+    }
 
     public static LivingEatEvent onLivingEat(LivingEntity living, FoodData foodData, ItemStack foodItemStack) {
         var event = new LivingEatEvent(living, foodData, foodItemStack);

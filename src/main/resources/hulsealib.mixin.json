@@ -5,6 +5,7 @@
     "mixins": [
         "common.MixinCreativeModeTab",
         "common.MixinFoodData",
+        "common.MixinItemStack",
         "common.MixinPistonBaseBlock"
     ],
     "client": [],
