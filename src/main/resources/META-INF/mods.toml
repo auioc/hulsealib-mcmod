@@ -29,6 +29,6 @@ description='''
 [[dependencies.hulsealib]]
     modId="arnicalib"
     mandatory=true
-    versionRange="[5.6.0,)"
+    versionRange="[5.6.1,)"
     ordering="NONE"
     side="BOTH"
