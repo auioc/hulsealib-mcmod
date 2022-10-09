@@ -75,17 +75,16 @@ function initializeCoreMod() {
                     toInject.add(fn_end);
                 }
 
-                var at = ASMAPI.findFirstInstructionBefore(
-                    methodNode,
-                    Opcodes.NEW,
-                    0
+                var at = methodNode.instructions.get(
+                    methodNode.instructions.indexOf(
+                        ASMAPI.findFirstInstructionBefore(
+                            methodNode,
+                            Opcodes.NEW,
+                            0
+                        )
+                    ) - 1
                 );
-                methodNode.instructions.insertBefore(
-                    methodNode.instructions.get(
-                        methodNode.instructions.indexOf(at) - 1
-                    ),
-                    toInject
-                );
+                methodNode.instructions.insertBefore(at, toInject);
 
                 methodNode.visitMaxs(14, 8);
 

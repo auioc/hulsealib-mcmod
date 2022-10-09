@@ -1,4 +1,4 @@
 {
-    "hulsealib.fishing_rod_item": "coremods/fishing_rod_item.js",
-    "hulsealib.item_stack": "coremods/item_stack.js"
+    "hulsealib.fishing_rod_item.use": "coremods/fishing_rod_item.use.js",
+    "hulsealib.item_stack.hurt": "coremods/item_stack.hurt.js"
 }
