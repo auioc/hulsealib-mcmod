@@ -2,8 +2,8 @@ package org.auioc.mcmod.hulsealib.mod.common.network.packet.client;
 
 import org.auioc.mcmod.arnicalib.base.phys.Shape;
 import org.auioc.mcmod.arnicalib.game.network.IHPacket;
-import org.auioc.mcmod.arnicalib.game.particle.ClientParticlePainter;
 import org.auioc.mcmod.arnicalib.game.particle.ParticlePainterOptions;
+import org.auioc.mcmod.hulsealib.game.particle.ClientParticlePainterAdapter;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.nbt.CompoundTag;
@@ -28,7 +28,7 @@ public class ClientboundDrawParticleShapePacket implements IHPacket {
     @Override
     @OnlyIn(Dist.CLIENT)
     public void handle(Context ctx) {
-        ClientParticlePainter.draw(this.shape, this.options, this.data);
+        ClientParticlePainterAdapter.draw(this.shape, this.options, this.data);
     }
 
     @Override
