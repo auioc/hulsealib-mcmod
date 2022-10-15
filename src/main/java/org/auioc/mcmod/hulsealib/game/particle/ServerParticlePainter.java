@@ -61,6 +61,14 @@ public class ServerParticlePainter {
         });
     }
 
+    public static void drawSphere(ServerPlayer player, ParticlePainterOptions options, Vec3 centre, double radius, double deltaAngle) {
+        draw(player, Shape.SPHERE, options, (nbt) -> {
+            nbt.put("Centre", NbtUtils.writeVec3(centre));
+            nbt.putDouble("Radius", radius);
+            nbt.putDouble("DeltaAngle", deltaAngle);
+        });
+    }
+
 
     // #region overload
 
@@ -96,6 +104,10 @@ public class ServerParticlePainter {
 
     public static void drawCuboid(ServerPlayer player, AABB aabb) {
         drawCuboid(player, DEFAULT_OPTIONS, aabb);
+    }
+
+    public static void drawSphere(ServerPlayer player, Vec3 centre, double radius) {
+        drawSphere(player, DEFAULT_OPTIONS, centre, radius, 6.0D);
     }
 
     // #endregion overload
