@@ -3,7 +3,7 @@ package org.auioc.mcmod.hulsealib.game.alchemy;
 import java.util.ArrayList;
 import java.util.function.Supplier;
 import javax.annotation.Nullable;
-import org.auioc.mcmod.arnicalib.game.effect.EffectUtils;
+import org.auioc.mcmod.arnicalib.game.effect.MobEffectUtils;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.item.Item;
@@ -41,7 +41,7 @@ public class HPotion extends Potion {
         this(name, () -> {
             var instance = new MobEffectInstance(effect, duration, amplifier);
             if (incurable) {
-                EffectUtils.makeIncurable(instance);
+                MobEffectUtils.makeIncurable(instance);
             }
             return new MobEffectInstance[] {instance};
         });

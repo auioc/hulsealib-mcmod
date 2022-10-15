@@ -4,7 +4,7 @@ import static net.minecraft.commands.Commands.literal;
 import org.auioc.mcmod.arnicalib.game.command.AHCommands;
 import org.auioc.mcmod.arnicalib.game.command.DynamicCommandHandler;
 import org.auioc.mcmod.arnicalib.game.command.node.VersionCommand;
-import org.auioc.mcmod.arnicalib.game.cpw.EnvironmentUtils;
+import org.auioc.mcmod.arnicalib.game.mod.EnvironmentUtils;
 import org.auioc.mcmod.hulsealib.HulseaLib;
 import org.auioc.mcmod.hulsealib.mod.server.command.node.RtpCommand;
 import com.mojang.brigadier.CommandDispatcher;

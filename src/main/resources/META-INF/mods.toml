@@ -12,6 +12,7 @@ displayURL="http://hi.auioc.org/hulsealib-mcmod/"
 credits="AUIOC"
 authors="WakelssSloth56"
 description='''
+Shared library for AH's Minecraft mods.
 '''
 
 [[dependencies.hulsealib]]
@@ -29,6 +30,6 @@ description='''
 [[dependencies.hulsealib]]
     modId="arnicalib"
     mandatory=true
-    versionRange="[5.6.1,)"
+    versionRange="[5.6.3,)"
     ordering="NONE"
     side="BOTH"
