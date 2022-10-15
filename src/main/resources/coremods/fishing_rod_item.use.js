@@ -97,7 +97,7 @@ function initializeCoreMod() {
 
 //! SRG <-> MCP
 /*
-    m_7203_    use
+    m_7203_    use    net/minecraft/world/item/ArmorItem;use(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/InteractionResultHolder;
 */
 
 //! LocalVariableTable

@@ -56,8 +56,8 @@ function initializeCoreMod() {
 
 //! SRG <-> MCP
 /*
-    m_40894_    shootProjectile
-    m_7967_     addFreshEntity
+    m_40894_    shootProjectile    net/minecraft/world/item/CrossbowItem;shootProjectile(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/InteractionHand;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;FZFFF)V
+    m_7967_     addFreshEntity     net/minecraft/server/level/ServerLevel;addFreshEntity(Lnet/minecraft/world/entity/Entity;)Z
 */
 
 //! LocalVariableTable

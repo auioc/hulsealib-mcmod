@@ -54,7 +54,7 @@ function initializeCoreMod() {
 
 //! SRG <-> MCP
 /*
-    m_41629_    hurt
+    m_41629_    hurt    net/minecraft/world/item/ItemStack;hurt(ILjava/util/Random;Lnet/minecraft/server/level/ServerPlayer;)Z
 */
 
 //! LocalVariableTable

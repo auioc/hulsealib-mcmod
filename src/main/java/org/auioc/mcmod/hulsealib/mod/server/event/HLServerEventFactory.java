@@ -47,14 +47,14 @@ public final class HLServerEventFactory {
         return event.getSurvivable();
     }
 
-    // Coremod hulsealib.fishing_rod_item
+    // Coremod hulsealib.fishing_rod_item.use
     public static FishingRodCastEvent.Pre preFishingRodCast(Player player, Level level, ItemStack fishingRod, int speedBonus, int luckBonus) {
         var event = new FishingRodCastEvent.Pre((ServerPlayer) player, (ServerLevel) level, fishingRod, speedBonus, luckBonus);
         BUS.post(event);
         return event;
     }
 
-    // Coremod hulsealib.item_stack
+    // Coremod hulsealib.item_stack.hurt
     public static int onItemHurt(ItemStack itemStack, int damage, Random random, @Nullable ServerPlayer player) {
         var event = new ItemHurtEvent(itemStack, damage, random, player);
         BUS.post(event);
@@ -83,6 +83,7 @@ public final class HLServerEventFactory {
         BUS.post(new PreBowReleaseEvent(player, bow, arrow));
     }
 
+    // Coremod hulsealib.cross_bow_item.shoot_projectile
     public static void preCrossbowRelease(LivingEntity living, ItemStack crossbow, Projectile projectile) {
         BUS.post(new PreCrossbowReleaseEvent(living, crossbow, projectile));
     }
