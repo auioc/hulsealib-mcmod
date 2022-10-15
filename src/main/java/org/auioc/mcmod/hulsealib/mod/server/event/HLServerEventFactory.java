@@ -8,16 +8,15 @@ import javax.annotation.Nullable;
 import org.auioc.mcmod.arnicalib.game.entity.MobStance;
 import org.auioc.mcmod.hulsealib.game.event.server.CatMorningGiftChanceEvent;
 import org.auioc.mcmod.hulsealib.game.event.server.EyeOfEnderSurvivableEvent;
-import org.auioc.mcmod.hulsealib.game.event.server.FishingRodCastEvent;
 import org.auioc.mcmod.hulsealib.game.event.server.ItemHurtEvent;
 import org.auioc.mcmod.hulsealib.game.event.server.LivingEatAddEffectEvent;
 import org.auioc.mcmod.hulsealib.game.event.server.PiglinStanceEvent;
 import org.auioc.mcmod.hulsealib.game.event.server.PreBowReleaseEvent;
 import org.auioc.mcmod.hulsealib.game.event.server.PreCrossbowReleaseEvent;
+import org.auioc.mcmod.hulsealib.game.event.server.PreFishingRodCastEvent;
 import org.auioc.mcmod.hulsealib.game.event.server.ServerPlayerSendMessageEvent;
 import net.minecraft.network.chat.ChatType;
 import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
@@ -27,7 +26,6 @@ import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.EyeOfEnder;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 
@@ -48,8 +46,8 @@ public final class HLServerEventFactory {
     }
 
     // Coremod hulsealib.fishing_rod_item.use
-    public static FishingRodCastEvent.Pre preFishingRodCast(Player player, Level level, ItemStack fishingRod, int speedBonus, int luckBonus) {
-        var event = new FishingRodCastEvent.Pre((ServerPlayer) player, (ServerLevel) level, fishingRod, speedBonus, luckBonus);
+    public static PreFishingRodCastEvent preFishingRodCast(Player player, ItemStack fishingRod, int speedBonus, int luckBonus) {
+        var event = new PreFishingRodCastEvent((ServerPlayer) player, fishingRod, speedBonus, luckBonus);
         BUS.post(event);
         return event;
     }

@@ -27,7 +27,7 @@ function initializeCoreMod() {
                     methodNode.localVariables.add(
                         new LocalVariableNode(
                             'preEvent',
-                            'Lorg/auioc/mcmod/hulsealib/game/event/server/FishingRodCastEvent$Pre;',
+                            'Lorg/auioc/mcmod/hulsealib/game/event/server/PreFishingRodCastEvent;',
                             null,
                             fn_start,
                             fn_end,
@@ -36,7 +36,6 @@ function initializeCoreMod() {
                     );
                     toInject.add(fn_start);
                     toInject.add(new VarInsnNode(Opcodes.ALOAD, 2));
-                    toInject.add(new VarInsnNode(Opcodes.ALOAD, 1));
                     toInject.add(new VarInsnNode(Opcodes.ALOAD, 4));
                     toInject.add(new VarInsnNode(Opcodes.ILOAD, 5));
                     toInject.add(new VarInsnNode(Opcodes.ILOAD, 6));
@@ -45,7 +44,7 @@ function initializeCoreMod() {
                             Opcodes.INVOKESTATIC,
                             'org/auioc/mcmod/hulsealib/mod/server/event/HLServerEventFactory',
                             'preFishingRodCast',
-                            '(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/item/ItemStack;II)Lorg/auioc/mcmod/hulsealib/game/event/server/FishingRodCastEvent$Pre;',
+                            '(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/item/ItemStack;II)Lorg/auioc/mcmod/hulsealib/game/event/server/PreFishingRodCastEvent;',
                             false
                         )
                     );
@@ -54,7 +53,7 @@ function initializeCoreMod() {
                     toInject.add(
                         new MethodInsnNode(
                             Opcodes.INVOKEVIRTUAL,
-                            'org/auioc/mcmod/hulsealib/game/event/server/FishingRodCastEvent$Pre',
+                            'org/auioc/mcmod/hulsealib/game/event/server/PreFishingRodCastEvent',
                             'getSpeedBonus',
                             '()I',
                             false
@@ -65,7 +64,7 @@ function initializeCoreMod() {
                     toInject.add(
                         new MethodInsnNode(
                             Opcodes.INVOKEVIRTUAL,
-                            'org/auioc/mcmod/hulsealib/game/event/server/FishingRodCastEvent$Pre',
+                            'org/auioc/mcmod/hulsealib/game/event/server/PreFishingRodCastEvent',
                             'getLuckBonus',
                             '()I',
                             false
@@ -111,7 +110,7 @@ function initializeCoreMod() {
     2       p_41291_     Lnet/minecraft/world/entity/player/Player;
     3       p_41292_     Lnet/minecraft/world/InteractionHand;
     4       itemstack    Lnet/minecraft/world/item/ItemStack;
-+   7       preEvent     Lorg/auioc/mcmod/hulsealib/game/event/server/FishingRodCastEvent$Pre;
++   7       preEvent     Lorg/auioc/mcmod/hulsealib/game/event/server/PreFishingRodCastEvent;
 */
 
 //! Code
@@ -125,7 +124,7 @@ function initializeCoreMod() {
             if (!p_41290_.isClientSide) {
                 int k = EnchantmentHelper.getFishingSpeedBonus(itemstack);
                 int j = EnchantmentHelper.getFishingLuckBonus(itemstack);
-+               var preEvent = org.auioc.mcmod.hulsealib.mod.server.event.HLServerEventFactory.preFishingRodCast(p_41291_, p_41290_, itemstack, k, j);
++               var preEvent = org.auioc.mcmod.hulsealib.mod.server.event.HLServerEventFactory.preFishingRodCast(p_41291_, itemstack, k, j);
 +               k = preEvent.getSpeedBonus();
 +               j = preEvent.getLuckBonus();
                 p_41290_.addFreshEntity(new FishingHook(p_41291_, p_41290_, j, k));
@@ -155,17 +154,16 @@ function initializeCoreMod() {
         LINENUMBER 36 L13
 +   L14
 +       ALOAD 2
-+       ALOAD 1
 +       ALOAD 4
 +       ILOAD 5
 +       ILOAD 6
-+       INVOKESTATIC org/auioc/mcmod/hulsealib/mod/server/event/HLServerEventFactory.preFishingRodCast (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/item/ItemStack;II)Lorg/auioc/mcmod/arnicalib/server/event/impl/FishingRodCastEvent$Pre;
++       INVOKESTATIC org/auioc/mcmod/hulsealib/mod/server/event/HLServerEventFactory.preFishingRodCast (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/item/ItemStack;II)Lorg/auioc/mcmod/hulsealib/game/event/server/PreFishingRodCastEvent;
 +       ASTORE 7
 +       ALOAD 7
-+       INVOKEVIRTUAL org/auioc/mcmod/hulsealib/game/event/server/FishingRodCastEvent$Pre.getSpeedBonus ()I
++       INVOKEVIRTUAL org/auioc/mcmod/hulsealib/game/event/server/PreFishingRodCastEvent.getSpeedBonus ()I
 +       ISTORE 5
 +       ALOAD 7
-+       INVOKEVIRTUAL org/auioc/mcmod/hulsealib/game/event/server/FishingRodCastEvent$Pre.getLuckBonus ()I
++       INVOKEVIRTUAL org/auioc/mcmod/hulsealib/game/event/server/PreFishingRodCastEvent.getLuckBonus ()I
 +       ISTORE 6
 +   L15
         ALOAD 1
