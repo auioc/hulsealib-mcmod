@@ -12,6 +12,7 @@ import org.auioc.mcmod.hulsealib.game.event.server.FishingRodCastEvent;
 import org.auioc.mcmod.hulsealib.game.event.server.ItemHurtEvent;
 import org.auioc.mcmod.hulsealib.game.event.server.LivingEatAddEffectEvent;
 import org.auioc.mcmod.hulsealib.game.event.server.PiglinStanceEvent;
+import org.auioc.mcmod.hulsealib.game.event.server.PreBowReleaseEvent;
 import org.auioc.mcmod.hulsealib.game.event.server.ServerPlayerSendMessageEvent;
 import net.minecraft.network.chat.ChatType;
 import net.minecraft.network.chat.Component;
@@ -21,6 +22,7 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.animal.Cat;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.EyeOfEnder;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -73,6 +75,10 @@ public final class HLServerEventFactory {
 
     public static boolean onServerPlayerSendMessage(ServerPlayer player, Component message, ChatType type, UUID uuid) {
         return BUS.post(new ServerPlayerSendMessageEvent(player, message, type, uuid));
+    }
+
+    public static void preBowRelease(ServerPlayer player, ItemStack bow, AbstractArrow arrow) {
+        BUS.post(new PreBowReleaseEvent(player, bow, arrow));
     }
 
 }

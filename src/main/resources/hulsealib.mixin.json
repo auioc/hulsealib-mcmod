@@ -12,7 +12,8 @@
         "server.MixinCatRelaxOnOwnerGoal",
         "server.MixinPiglinAi",
         "server.MixinEyeOfEnder",
-        "server.MixinEnderEyeItem"
+        "server.MixinEnderEyeItem",
+        "server.MixinBowItem"
     ],
     "client": [],
     "server": [],
