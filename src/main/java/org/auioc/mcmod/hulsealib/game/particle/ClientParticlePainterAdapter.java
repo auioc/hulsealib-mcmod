@@ -23,8 +23,8 @@ public class ClientParticlePainterAdapter {
                 drawCuboid(options, NbtUtils.getAABB(data, "AABB"));
             }
             case POLYGON -> {
-                if (data.contains("Vertexes")) {
-                    drawPolygon(options, VectorUtils.fromDoubleArray(NbtUtils.getDoubleArray(data, "Vertexes")));
+                if (data.contains("Vertices")) {
+                    drawPolygon(options, VectorUtils.fromDoubleArray(NbtUtils.getDoubleArray(data, "Vertices")));
                 } else {
                     drawPolygon(
                         options,
@@ -42,8 +42,15 @@ public class ClientParticlePainterAdapter {
             }
             case SPHERE -> {
                 drawSphere(
-                    options, NbtUtils.getVec3(data, "Centre"),
-                    data.getDouble("Radius"), data.getDouble("DeltaAngle")
+                    options,
+                    NbtUtils.getVec3(data, "Centre"), data.getDouble("Radius"), data.getDouble("DeltaAngle")
+                );
+            }
+            case START_POLYGON -> {
+                drawStarPolygon(
+                    options,
+                    NbtUtils.getVec3(data, "Centre"), NbtUtils.getVec3(data, "Normal"),
+                    data.getDouble("Circumradius"), data.getInt("Points")
                 );
             }
             default -> throw new IllegalArgumentException("Unexpected shape: " + shape);

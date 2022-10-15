@@ -31,9 +31,9 @@ public class ServerParticlePainter {
         });
     }
 
-    public static void drawPolygon(ServerPlayer player, ParticlePainterOptions options, Vec3[] vertexes) {
+    public static void drawPolygon(ServerPlayer player, ParticlePainterOptions options, Vec3[] vertices) {
         draw(player, Shape.POLYGON, options, (nbt) -> {
-            nbt.put("Vertexes", NbtUtils.writeDoubleArray(VectorUtils.toDoubleArray(vertexes)));
+            nbt.put("Vertices", NbtUtils.writeDoubleArray(VectorUtils.toDoubleArray(vertices)));
         });
     }
 
@@ -43,6 +43,15 @@ public class ServerParticlePainter {
             nbt.put("Normal", NbtUtils.writeVec3(normalVector));
             nbt.putDouble("Circumradius", circumradius);
             nbt.putDouble("CentralAngle", centralAngle);
+        });
+    }
+
+    public static void drawStarPolygon(ServerPlayer player, ParticlePainterOptions options, Vec3 centre, Vec3 normalVector, double circumradius, int points) {
+        draw(player, Shape.START_POLYGON, options, (nbt) -> {
+            nbt.put("Centre", NbtUtils.writeVec3(centre));
+            nbt.put("Normal", NbtUtils.writeVec3(normalVector));
+            nbt.putDouble("Circumradius", circumradius);
+            nbt.putInt("Points", points);
         });
     }
 
@@ -88,18 +97,22 @@ public class ServerParticlePainter {
         drawCircle(player, DEFAULT_OPTIONS, centre, normal, radius, 1.0D);
     }
 
-    public static void drawPolygon(ServerPlayer player, Vec3[] vertexes) {
-        drawPolygon(player, DEFAULT_OPTIONS, vertexes);
+    public static void drawPolygon(ServerPlayer player, Vec3[] vertices) {
+        drawPolygon(player, DEFAULT_OPTIONS, vertices);
     }
 
     public static void drawPolygon(ServerPlayer player, Vec3 centre, Vec3 normalVector, double circumradius, double centralAngle) {
         drawPolygon(player, DEFAULT_OPTIONS, centre, normalVector, circumradius, centralAngle);
     }
 
-    public static void drawPolygon(ServerPlayer player, Vec3i[] vertexes) {
-        Vec3[] _vertexes = new Vec3[vertexes.length];
-        for (int i = 0; i < vertexes.length; i++) _vertexes[i] = Vec3.atCenterOf(vertexes[i]);
-        drawPolygon(player, _vertexes);
+    public static void drawStarPolygon(ServerPlayer player, Vec3 centre, Vec3 normalVector, double circumradius, int points) {
+        drawStarPolygon(player, DEFAULT_OPTIONS, centre, normalVector, circumradius, points);
+    }
+
+    public static void drawPolygon(ServerPlayer player, Vec3i[] vertices) {
+        Vec3[] _vertices = new Vec3[vertices.length];
+        for (int i = 0; i < vertices.length; i++) _vertices[i] = Vec3.atCenterOf(vertices[i]);
+        drawPolygon(player, _vertices);
     }
 
     public static void drawCuboid(ServerPlayer player, AABB aabb) {
