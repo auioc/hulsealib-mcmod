@@ -13,7 +13,8 @@
         "server.MixinPiglinAi",
         "server.MixinEyeOfEnder",
         "server.MixinEnderEyeItem",
-        "server.MixinBowItem"
+        "server.MixinBowItem",
+        "server.MixinFoodData"
     ],
     "client": [],
     "server": [],
