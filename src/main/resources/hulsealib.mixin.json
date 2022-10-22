@@ -7,6 +7,7 @@
         "common.MixinFoodData",
         "common.MixinItemStack",
         "common.MixinPistonBaseBlock",
+        "common.MixinPlayer",
         "server.MixinServerPlayer",
         "server.MixinLivingEntity",
         "server.MixinCatRelaxOnOwnerGoal",
