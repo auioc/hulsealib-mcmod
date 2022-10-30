@@ -1,6 +1,6 @@
 package org.auioc.mcmod.hulsealib.mod.mixin.common;
 
-import org.auioc.mcmod.hulsealib.mod.common.network.HLPacketHandler;
+import org.auioc.mcmod.arnicalib.game.entity.player.PlayerUtils;
 import org.auioc.mcmod.hulsealib.mod.common.network.packet.client.ClientboundSetRemainingFireTicksPacket;
 import org.auioc.mcmod.hulsealib.mod.mixinapi.common.IMixinPlayer;
 import org.spongepowered.asm.mixin.Final;
@@ -35,10 +35,10 @@ public abstract class MixinPlayer extends LivingEntity implements IMixinPlayer {
      */
     @Overwrite()
     public void setRemainingFireTicks(int p_36353_) {
-        if (((Player) (Object) this) instanceof ServerPlayer serverPlayer) {
+        if (((Player) (Object) this) instanceof ServerPlayer player && PlayerUtils.isOp(player)) {
             int t = this.abilities.invulnerable ? Math.min(p_36353_, 1) : p_36353_;
             super.setRemainingFireTicks(t);
-            if (this.lastRemainingFireTicks != t) HLPacketHandler.sendToClient(serverPlayer, new ClientboundSetRemainingFireTicksPacket(t));
+            if (this.lastRemainingFireTicks != t) ClientboundSetRemainingFireTicksPacket.sendToClient(player, t);
             this.lastRemainingFireTicks = t;
         }
     }
