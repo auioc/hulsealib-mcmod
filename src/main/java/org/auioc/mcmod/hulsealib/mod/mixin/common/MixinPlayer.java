@@ -3,6 +3,7 @@ package org.auioc.mcmod.hulsealib.mod.mixin.common;
 import org.auioc.mcmod.hulsealib.mod.common.network.HLPacketHandler;
 import org.auioc.mcmod.hulsealib.mod.common.network.packet.client.ClientboundSetRemainingFireTicksPacket;
 import org.auioc.mcmod.hulsealib.mod.mixinapi.common.IMixinPlayer;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
@@ -23,6 +24,7 @@ public abstract class MixinPlayer extends LivingEntity implements IMixinPlayer {
     }
 
     @Shadow
+    @Final
     private Abilities abilities;
 
     private int lastRemainingFireTicks;
