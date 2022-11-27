@@ -24,9 +24,8 @@ public final class HLPacketHandler {
         HANDLER.sendToClient(player, msg);
     }
 
-    @Deprecated
-    public static <MSG extends IHPacket> void sendToClientAll(MSG msg) {
-        for (var player : ServerUtils.getServer().getPlayerList().getPlayers()) sendToClient(player, msg);
+    public static <MSG extends IHPacket> void sendToAllClient(MSG msg) {
+        HANDLER.sendToAllClient(msg);
     }
 
     @Deprecated

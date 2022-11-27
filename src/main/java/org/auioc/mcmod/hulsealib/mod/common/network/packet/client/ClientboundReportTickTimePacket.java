@@ -2,7 +2,7 @@ package org.auioc.mcmod.hulsealib.mod.common.network.packet.client;
 
 import org.auioc.mcmod.arnicalib.game.network.IHPacket;
 import org.auioc.mcmod.arnicalib.game.server.ServerUtils;
-import org.auioc.mcmod.hulsealib.game.client.AdditionalServerData;
+import org.auioc.mcmod.arnicalib.game.shared.ClientSharedData;
 import org.auioc.mcmod.hulsealib.mod.common.network.HLPacketHandler;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.api.distmarker.Dist;
@@ -22,8 +22,8 @@ public class ClientboundReportTickTimePacket implements IHPacket {
     @Override
     @OnlyIn(Dist.CLIENT)
     public void handle(Context ctx) {
-        AdditionalServerData.setTps(this.tps);
-        AdditionalServerData.setMspt(this.mspt);
+        ClientSharedData.tps = this.tps;
+        ClientSharedData.mspt = this.mspt;
     }
 
     @Override
@@ -39,7 +39,7 @@ public class ClientboundReportTickTimePacket implements IHPacket {
 
     public static void sendToAllClient() {
         var tps_mspt = ServerUtils.getTpsMspt();
-        HLPacketHandler.sendToClientAll(new ClientboundReportTickTimePacket(tps_mspt.getLeft(), tps_mspt.getRight()));
+        HLPacketHandler.sendToAllClient(new ClientboundReportTickTimePacket(tps_mspt.getLeft(), tps_mspt.getRight()));
     }
 
 }
