@@ -5,9 +5,11 @@ import org.auioc.mcmod.hulsealib.mod.common.block.HLBlocks;
 import org.auioc.mcmod.hulsealib.mod.common.itemgroup.HLCreativeModeTabs;
 import org.auioc.mcmod.hulsealib.mod.common.network.HLPacketHandler;
 import org.auioc.mcmod.hulsealib.mod.server.event.HLServerEventHandler;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.loading.FMLEnvironment;
 
 public final class Initialization {
 
@@ -15,7 +17,7 @@ public final class Initialization {
         registerConfig();
         modSetup();
         forgeSetup();
-        // if (FMLEnvironment.dist == Dist.CLIENT) ClientInitialization.init();
+        if (FMLEnvironment.dist == Dist.CLIENT) ClientInitialization.init();
     }
 
     private static final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
