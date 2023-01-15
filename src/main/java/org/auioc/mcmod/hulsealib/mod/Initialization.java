@@ -2,6 +2,7 @@ package org.auioc.mcmod.hulsealib.mod;
 
 import org.auioc.mcmod.hulsealib.game.command.HLCommandArguments;
 import org.auioc.mcmod.hulsealib.mod.common.block.HLBlocks;
+import org.auioc.mcmod.hulsealib.mod.common.blockentity.HLBlockEntities;
 import org.auioc.mcmod.hulsealib.mod.common.itemgroup.HLCreativeModeTabs;
 import org.auioc.mcmod.hulsealib.mod.common.network.HLPacketHandler;
 import org.auioc.mcmod.hulsealib.mod.server.event.HLServerEventHandler;
@@ -29,6 +30,7 @@ public final class Initialization {
         HLPacketHandler.init();
         HLCommandArguments.init();
         HLBlocks.BLOCKS.register(modEventBus);
+        HLBlockEntities.BLOCK_ENTITIES.register(modEventBus);
     }
 
     private static void forgeSetup() {
