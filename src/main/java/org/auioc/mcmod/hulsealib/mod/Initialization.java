@@ -1,6 +1,7 @@
 package org.auioc.mcmod.hulsealib.mod;
 
 import org.auioc.mcmod.hulsealib.game.command.HLCommandArguments;
+import org.auioc.mcmod.hulsealib.mod.common.block.HLBlocks;
 import org.auioc.mcmod.hulsealib.mod.common.itemgroup.HLCreativeModeTabs;
 import org.auioc.mcmod.hulsealib.mod.common.network.HLPacketHandler;
 import org.auioc.mcmod.hulsealib.mod.server.event.HLServerEventHandler;
@@ -8,7 +9,6 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
-@SuppressWarnings("unused")
 public final class Initialization {
 
     public static void init() {
@@ -26,6 +26,7 @@ public final class Initialization {
     private static void modSetup() {
         HLPacketHandler.init();
         HLCommandArguments.init();
+        HLBlocks.BLOCKS.register(modEventBus);
     }
 
     private static void forgeSetup() {
