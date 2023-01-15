@@ -11,12 +11,19 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
-import net.minecraft.world.level.material.MaterialColor;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class CustomBlock extends BaseEntityBlock {
 
     public CustomBlock() {
-        super(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).noOcclusion());
+        super(BlockBehaviour.Properties.of(Material.STONE).noOcclusion());
+    }
+
+    @Override
+    public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext ctx) {
+        return CustomBlock.getBlockEntity(level, pos).map(CustomBlockBlockEntity::getShape).orElse(Shapes.block());
     }
 
     @Override
