@@ -30,6 +30,6 @@ public abstract class MixinFoodData {
     }
 
     @Shadow
-    protected abstract void eat(int p_38708_, float p_38709_);
+    public abstract void eat(int p_38708_, float p_38709_);
 
 }
