@@ -18,7 +18,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 public class CustomBlock extends BaseEntityBlock {
 
     public CustomBlock() {
-        super(BlockBehaviour.Properties.of(Material.STONE).noOcclusion());
+        super(BlockBehaviour.Properties.of(Material.STONE).noOcclusion().dynamicShape().noDrops());
     }
 
     @Override
@@ -33,7 +33,7 @@ public class CustomBlock extends BaseEntityBlock {
 
     @Override
     public RenderShape getRenderShape(BlockState state) {
-        return RenderShape.MODEL;
+        return RenderShape.INVISIBLE;
     }
 
     public static Optional<CustomBlockBlockEntity> getBlockEntity(BlockGetter level, BlockPos pos) {
