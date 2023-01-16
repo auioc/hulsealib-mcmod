@@ -4,8 +4,10 @@ import java.util.List;
 import java.util.Random;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import org.auioc.mcmod.hulsealib.mod.common.block.HLBlocks;
 import org.auioc.mcmod.hulsealib.mod.common.block.impl.CustomBlock;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.block.BlockModelShaper;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.block.model.ItemOverrides;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -18,6 +20,7 @@ import net.minecraft.world.level.BlockAndTintGetter;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.client.model.data.IModelData;
 import net.minecraftforge.client.model.data.ModelDataMap;
 import net.minecraftforge.client.model.data.ModelProperty;
@@ -66,6 +69,8 @@ public class CustomBlockBakedModel implements BakedModel {
         throw new AssertionError("BakedModel::getQuads should never be invoked, only IForgeBakedModel::getQuads");
     }
 
+    // ====================================================================== //
+
     @Override
     public boolean useAmbientOcclusion() {
         return defaultModel.useAmbientOcclusion();
@@ -95,6 +100,16 @@ public class CustomBlockBakedModel implements BakedModel {
     @Override
     public ItemOverrides getOverrides() {
         return defaultModel.getOverrides();
+    }
+
+    // ============================================================================================================== //
+
+    public static void register(ModelBakeEvent event) {
+        for (var blockState : HLBlocks.CUSTOM_BLOCK.get().getStateDefinition().getPossibleStates()) {
+            var modelId = BlockModelShaper.stateToModelLocation(blockState);
+            var existingModel = event.getModelRegistry().get(modelId);
+            event.getModelRegistry().put(modelId, new CustomBlockBakedModel(existingModel));
+        }
     }
 
 }

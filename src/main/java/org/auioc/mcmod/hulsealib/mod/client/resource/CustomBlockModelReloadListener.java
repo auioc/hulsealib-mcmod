@@ -14,6 +14,7 @@ import net.minecraft.server.packs.resources.SimpleJsonResourceReloadListener;
 import net.minecraft.util.profiling.ProfilerFiller;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.client.model.ForgeModelBakery;
 
 /**
  * This is a FAKE resource reload listener, do NOT register it!
@@ -43,5 +44,11 @@ public class CustomBlockModelReloadListener extends SimpleJsonResourceReloadList
 
     @Override
     protected void apply(Map<ResourceLocation, JsonElement> map, ResourceManager resourceManager, ProfilerFiller profiler) {}
+
+    // ============================================================================================================== //
+
+    public static void apply(ResourceManager resourceManager) {
+        new CustomBlockModelReloadListener().apply(resourceManager, null).forEach(ForgeModelBakery::addSpecialModel);
+    }
 
 }
