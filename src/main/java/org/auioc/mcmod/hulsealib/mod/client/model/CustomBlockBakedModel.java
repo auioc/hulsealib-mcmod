@@ -25,10 +25,10 @@ import net.minecraftforge.client.model.data.ModelProperty;
 @OnlyIn(Dist.CLIENT)
 public class CustomBlockBakedModel implements BakedModel {
 
-    private static final Minecraft MC  = Minecraft.getInstance();
+    private static final Minecraft MC = Minecraft.getInstance();
 
     private final BakedModel defaultModel;
-    private static final ModelProperty<String> MODEL_ID = new ModelProperty<>();
+    private static final ModelProperty<BakedModel> MODEL = new ModelProperty<>();
 
     public CustomBlockBakedModel(BakedModel defaultModel) {
         this.defaultModel = defaultModel;
@@ -36,30 +36,29 @@ public class CustomBlockBakedModel implements BakedModel {
 
     @Nonnull
     @Override
-    public List<BakedQuad> getQuads(@Nullable BlockState state, @Nullable Direction side, @Nonnull Random rand, @Nonnull IModelData data) {
-        var modelId = data.getData(MODEL_ID);
-        var model = (modelId == null)
-            ? this.defaultModel
-            : MC.getModelManager().getModel(
-                modelId.contains("#")
-                    ? new ModelResourceLocation(modelId)
-                    : new ResourceLocation(modelId)
-            );
-        return model.getQuads(state, side, rand, data);
+    public IModelData getModelData(BlockAndTintGetter level, BlockPos pos, BlockState state, IModelData modelData) {
+        final var data = new ModelDataMap.Builder().withInitial(MODEL, this.defaultModel).build();
+        CustomBlock.getBlockEntity(level, pos).ifPresent(
+            (tile) -> {
+                tile.getModelId()
+                    .map((id) -> id.contains("#") ? new ModelResourceLocation(id) : new ResourceLocation(id))
+                    .map((id) -> MC.getModelManager().getModel(id))
+                    .ifPresent((id) -> data.setData(MODEL, id));
+            }
+        );
+        return data;
     }
 
     @Nonnull
     @Override
-    public IModelData getModelData(BlockAndTintGetter level, BlockPos pos, BlockState state, IModelData modelData) {
-        var data = new ModelDataMap.Builder().withInitial(MODEL_ID, null).build();
+    public List<BakedQuad> getQuads(@Nullable BlockState state, @Nullable Direction side, @Nonnull Random rand, @Nonnull IModelData data) {
+        return data.getData(MODEL).getQuads(state, side, rand, data);
+    }
 
-        CustomBlock.getBlockEntity(level, pos).ifPresent(
-            (tile) -> {
-                tile.getModelId().ifPresent((modelId) -> data.setData(MODEL_ID, modelId));
-            }
-        );
-
-        return data;
+    @Override
+    public TextureAtlasSprite getParticleIcon(IModelData data) {
+        var model = data.getData(MODEL);
+        return (model != null) ? model.getParticleIcon(data) : getParticleIcon();
     }
 
     @Override
