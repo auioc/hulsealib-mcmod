@@ -11,6 +11,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.util.Mth;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -40,6 +41,7 @@ public class CustomBlockBlockEntity extends BlockEntity {
     private Quaternion rotation;
     @Nullable
     private Vector3f scale;
+    private int light = 0;
 
     public CustomBlockBlockEntity(BlockPos pos, BlockState state) {
         super(HLBlockEntities.CUSTOM_BLOCK_BLOCK_ENTITY.get(), pos, state);
@@ -65,6 +67,10 @@ public class CustomBlockBlockEntity extends BlockEntity {
         return (scale != null) ? scale : DEFAULT_SCALE;
     }
 
+    public int getLight() {
+        return light;
+    }
+
     // ====================================================================== //
 
     @Override
@@ -75,6 +81,7 @@ public class CustomBlockBlockEntity extends BlockEntity {
         if (translation != null) nbt.put("Translation", NbtUtils.writeVec3(translation));
         if (rawRotation != null) nbt.put("Rotation", NbtUtils.writeVector3f(rawRotation));
         if (scale != null) nbt.put("Scale", NbtUtils.writeVector3f(scale));
+        nbt.putInt("Light", light);
     }
 
     @Override
@@ -94,6 +101,7 @@ public class CustomBlockBlockEntity extends BlockEntity {
         this.rawRotation = rawRotation;
         this.rotation = new Quaternion(rawRotation.x(), rawRotation.y(), rawRotation.z(), true);
         this.scale = NbtUtils.getVector3fOrElse(nbt, "Scale", DEFAULT_SCALE);
+        this.light = Mth.clamp(nbt.getInt("Light"), 0, 15);
     }
 
     // ====================================================================== //

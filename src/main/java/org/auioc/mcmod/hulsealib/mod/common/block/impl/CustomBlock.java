@@ -27,6 +27,11 @@ public class CustomBlock extends BaseEntityBlock {
     }
 
     @Override
+    public int getLightEmission(BlockState state, BlockGetter level, BlockPos pos) {
+        return CustomBlock.getBlockEntity(level, pos).map(CustomBlockBlockEntity::getLight).orElse(0);
+    }
+
+    @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
         return new CustomBlockBlockEntity(pos, state);
     }
