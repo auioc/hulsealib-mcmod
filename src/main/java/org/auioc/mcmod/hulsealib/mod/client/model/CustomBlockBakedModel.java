@@ -6,6 +6,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.auioc.mcmod.hulsealib.mod.common.block.HLBlocks;
 import org.auioc.mcmod.hulsealib.mod.common.block.impl.CustomBlock;
+import org.auioc.mcmod.hulsealib.mod.common.blockentity.impl.CustomBlockBlockEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.BlockModelShaper;
 import net.minecraft.client.renderer.block.model.BakedQuad;
@@ -43,10 +44,16 @@ public class CustomBlockBakedModel implements BakedModel {
         final var data = new ModelDataMap.Builder().withInitial(MODEL, this.defaultModel).build();
         CustomBlock.getBlockEntity(level, pos).ifPresent(
             (tile) -> {
-                tile.getModelId()
-                    .map((id) -> id.contains("#") ? new ModelResourceLocation(id) : new ResourceLocation(id))
-                    .map((id) -> MC.getModelManager().getModel(id))
-                    .ifPresent((id) -> data.setData(MODEL, id));
+                var modelId = tile.getModelId();
+                if (!modelId.equals(CustomBlockBlockEntity.DEFAULT_MODEL_ID)) {
+                    data.setData(
+                        MODEL, MC.getModelManager().getModel(
+                            modelId.contains("#")
+                                ? new ModelResourceLocation(modelId)
+                                : new ResourceLocation(modelId)
+                        )
+                    );
+                }
             }
         );
         return data;
@@ -72,35 +79,23 @@ public class CustomBlockBakedModel implements BakedModel {
     // ====================================================================== //
 
     @Override
-    public boolean useAmbientOcclusion() {
-        return defaultModel.useAmbientOcclusion();
-    }
+    public boolean useAmbientOcclusion() { return defaultModel.useAmbientOcclusion(); }
 
     @Override
-    public boolean isGui3d() {
-        return defaultModel.isGui3d();
-    }
+    public boolean isGui3d() { return defaultModel.isGui3d(); }
 
     @Override
-    public boolean usesBlockLight() {
-        return defaultModel.usesBlockLight();
-    }
+    public boolean usesBlockLight() { return defaultModel.usesBlockLight(); }
 
     @Override
-    public boolean isCustomRenderer() {
-        return defaultModel.isCustomRenderer();
-    }
+    public boolean isCustomRenderer() { return defaultModel.isCustomRenderer(); }
 
     @Override
     @SuppressWarnings("deprecation")
-    public TextureAtlasSprite getParticleIcon() {
-        return defaultModel.getParticleIcon();
-    }
+    public TextureAtlasSprite getParticleIcon() { return defaultModel.getParticleIcon(); }
 
     @Override
-    public ItemOverrides getOverrides() {
-        return defaultModel.getOverrides();
-    }
+    public ItemOverrides getOverrides() { return defaultModel.getOverrides(); }
 
     // ============================================================================================================== //
 

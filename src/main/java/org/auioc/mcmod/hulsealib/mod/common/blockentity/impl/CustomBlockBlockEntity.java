@@ -21,6 +21,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class CustomBlockBlockEntity extends BlockEntity {
 
+    public static final String DEFAULT_MODEL_ID = "hulsealib:custom_block#";
     private static final VoxelShape DEFAULT_SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D);
     private static final double[] DEFAULT_RAW_SHAPE = new double[] {0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D};
     private static final Vec3 DEFAULT_TRANSLATION = new Vec3(0.0D, 0.0D, 0.0D);
@@ -48,9 +49,7 @@ public class CustomBlockBlockEntity extends BlockEntity {
         super(HLBlockEntities.CUSTOM_BLOCK_BLOCK_ENTITY.get(), pos, state);
     }
 
-    public Optional<String> getModelId() {
-        return Optional.ofNullable(modelId);
-    }
+    public String getModelId() { return (modelId != null) ? modelId : DEFAULT_MODEL_ID; }
 
     public VoxelShape getShape() {
         return (shape != null) ? shape : DEFAULT_SHAPE;
