@@ -8,6 +8,7 @@ import com.mojang.math.Quaternion;
 import com.mojang.math.Vector3f;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.Tag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
@@ -76,7 +77,7 @@ public class CustomBlockBlockEntity extends BlockEntity {
     @Override
     protected void saveAdditional(CompoundTag nbt) {
         super.saveAdditional(nbt);
-        if (modelId != null) nbt.putString("ModelId", modelId.toString());
+        if (modelId != null) nbt.putString("Model", modelId.toString());
         if (rawShape != null && rawShape.length == 6) nbt.put("Shape", NbtUtils.writeDoubleArray(rawShape));
         if (translation != null) nbt.put("Translation", NbtUtils.writeVec3(translation));
         if (rawRotation != null) nbt.put("Rotation", NbtUtils.writeVector3f(rawRotation));
@@ -87,7 +88,7 @@ public class CustomBlockBlockEntity extends BlockEntity {
     @Override
     public void load(CompoundTag nbt) {
         super.load(nbt);
-        if (nbt.contains("ModelId", 8)) this.modelId = nbt.getString("ModelId");
+        if (nbt.contains("Model", Tag.TAG_STRING)) this.modelId = nbt.getString("Model");
         var rawShape = NbtUtils.getDoubleArray(nbt, "Shape");
         if (rawShape.length == 6) {
             this.rawShape = rawShape;
