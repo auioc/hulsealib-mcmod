@@ -7,6 +7,7 @@ import javax.annotation.Nullable;
 import org.auioc.mcmod.hulsealib.mod.common.block.HLBlocks;
 import org.auioc.mcmod.hulsealib.mod.common.block.impl.CustomBlock;
 import org.auioc.mcmod.hulsealib.mod.common.blockentity.impl.CustomBlockBlockEntity;
+import net.minecraft.ResourceLocationException;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.BlockModelShaper;
 import net.minecraft.client.renderer.block.model.BakedQuad;
@@ -46,13 +47,16 @@ public class CustomBlockBakedModel implements BakedModel {
             (tile) -> {
                 var modelId = tile.getModelId();
                 if (!modelId.equals(CustomBlockBlockEntity.DEFAULT_MODEL_ID)) {
-                    data.setData(
-                        MODEL, MC.getModelManager().getModel(
-                            modelId.contains("#")
-                                ? new ModelResourceLocation(modelId)
-                                : new ResourceLocation(modelId)
-                        )
-                    );
+                    try {
+                        data.setData(
+                            MODEL, MC.getModelManager().getModel(
+                                modelId.contains("#")
+                                    ? new ModelResourceLocation(modelId)
+                                    : new ResourceLocation(modelId)
+                            )
+                        );
+                    } catch (ResourceLocationException e) {
+                    }
                 }
             }
         );

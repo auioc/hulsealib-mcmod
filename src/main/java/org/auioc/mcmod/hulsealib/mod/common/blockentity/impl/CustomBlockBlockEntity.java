@@ -20,12 +20,13 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 public class CustomBlockBlockEntity extends BlockEntity {
 
     public static final String DEFAULT_MODEL_ID = "hulsealib:custom_block#";
-    private static final VoxelShape DEFAULT_SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D);
-    private static final double[] DEFAULT_RAW_SHAPE = new double[] {0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D};
-    private static final Vector3f DEFAULT_TRANSLATION = new Vector3f(0.0F, 0.0F, 0.0F);
-    private static final Quaternion DEFAULT_ROTATION = new Quaternion(0.0F, 0.0F, 0.0F, true);
-    private static final Vector3f DEFAULT_RAW_ROTATION = new Vector3f(0.0F, 0.0F, 0.0F);
-    private static final Vector3f DEFAULT_SCALE = new Vector3f(1.0F, 1.0F, 1.0F);
+    public static final VoxelShape DEFAULT_SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D);
+    public static final double[] DEFAULT_RAW_SHAPE = new double[] {0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D};
+    public static final Vector3f DEFAULT_TRANSLATION = new Vector3f(0.0F, 0.0F, 0.0F);
+    public static final Quaternion DEFAULT_ROTATION = new Quaternion(0.0F, 0.0F, 0.0F, true);
+    public static final Vector3f DEFAULT_RAW_ROTATION = new Vector3f(0.0F, 0.0F, 0.0F);
+    public static final Vector3f DEFAULT_SCALE = new Vector3f(1.0F, 1.0F, 1.0F);
+    public static final int DEFAULT_LIGHT = 0;
 
     @Nullable
     private String modelId;
