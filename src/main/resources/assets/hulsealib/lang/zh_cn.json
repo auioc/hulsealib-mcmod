@@ -3,5 +3,18 @@
 
     "itemGroup.vanillaHiddenItems": "原版隐藏物品",
 
-    "hulsealib.argument.creative_mode_tab.unknown": "未知的创造模式物品栏标签\"%s\""
+    "hulsealib.argument.creative_mode_tab.unknown": "未知的创造模式物品栏标签\"%s\"",
+
+    "hulsealib.gui.custom_block.title": "编辑自定义方块",
+    "hulsealib.gui.custom_block.reload": "重载",
+    "hulsealib.gui.custom_block.mode": "模式",
+    "hulsealib.gui.custom_block.data_invalid": "存在无效的数据",
+    "hulsealib.gui.custom_block.copy_command_only": "仅复制命令",
+    "hulsealib.gui.custom_block.modify_directly": "直接修改",
+    "hulsealib.gui.custom_block.model_id": "模型",
+    "hulsealib.gui.custom_block.shape": "形状",
+    "hulsealib.gui.custom_block.translation": "平移",
+    "hulsealib.gui.custom_block.rotation": "旋转",
+    "hulsealib.gui.custom_block.scale": "缩放",
+    "hulsealib.gui.custom_block.light": "亮度"
 }

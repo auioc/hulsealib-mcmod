@@ -3,5 +3,18 @@
 
     "itemGroup.vanillaHiddenItems": "Vanilla Hidden Items",
 
-    "hulsealib.argument.creative_mode_tab.unknown": "Unknown creative mod tab \"%s\""
+    "hulsealib.argument.creative_mode_tab.unknown": "Unknown creative mod tab \"%s\"",
+
+    "hulsealib.gui.custom_block.title": "Custom Block Editor",
+    "hulsealib.gui.custom_block.reload": "Reload",
+    "hulsealib.gui.custom_block.mode": "Mode",
+    "hulsealib.gui.custom_block.data_invalid": "Data invalid!",
+    "hulsealib.gui.custom_block.copy_command_only": "Copy command only",
+    "hulsealib.gui.custom_block.modify_directly": "Modify directly",
+    "hulsealib.gui.custom_block.model_id": "Model ID",
+    "hulsealib.gui.custom_block.shape": "Shape",
+    "hulsealib.gui.custom_block.translation": "Translation",
+    "hulsealib.gui.custom_block.rotation": "Rotation",
+    "hulsealib.gui.custom_block.scale": "Scale",
+    "hulsealib.gui.custom_block.light": "Light"
 }
