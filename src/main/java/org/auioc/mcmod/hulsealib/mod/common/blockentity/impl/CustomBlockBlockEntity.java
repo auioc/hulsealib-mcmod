@@ -2,8 +2,8 @@ package org.auioc.mcmod.hulsealib.mod.common.blockentity.impl;
 
 import javax.annotation.Nullable;
 import org.auioc.mcmod.arnicalib.game.nbt.NbtUtils;
+import org.auioc.mcmod.hulsealib.mod.api.ICustomBlock;
 import org.auioc.mcmod.hulsealib.mod.common.blockentity.HLBlockEntities;
-import com.mojang.math.Quaternion;
 import com.mojang.math.Vector3f;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -17,58 +17,48 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class CustomBlockBlockEntity extends BlockEntity {
-
-    public static final String DEFAULT_MODEL_ID = "hulsealib:custom_block#";
-    public static final VoxelShape DEFAULT_SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D);
-    public static final double[] DEFAULT_RAW_SHAPE = new double[] {0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D};
-    public static final Vector3f DEFAULT_MODEL_TRANSLATION = new Vector3f(0.0F, 0.0F, 0.0F);
-    public static final Quaternion DEFAULT_MODEL_ROTATION = new Quaternion(0.0F, 0.0F, 0.0F, true);
-    public static final Vector3f DEFAULT_RAW_MODEL_ROTATION = new Vector3f(0.0F, 0.0F, 0.0F);
-    public static final Vector3f DEFAULT_MODEL_SCALE = new Vector3f(1.0F, 1.0F, 1.0F);
-    public static final int DEFAULT_LIGHT = 0;
+public class CustomBlockBlockEntity extends BlockEntity implements ICustomBlock {
 
     private static final String NBT_SHAPE = "Shape";
     private static final String NBT_LIGHT = "Light";
-    private static final String NBT_MODEL_ID = "ModelId";
-    private static final String NBT_MODEL_SCALE = "ModelScale";
-    private static final String NBT_MODEL_TRANSLATION = "ModelTranslation";
-    private static final String NBT_MODEL_ROTATION = "ModelRotation";
 
     @Nullable
     private String modelId;
     @Nullable
+    private Vector3f modelScale;
+    @Nullable
+    private Vector3f modelTranslation;
+    @Nullable
+    private Vector3f modelRotation;
+    @Nullable
     private double[] rawShape;
     @Nullable
     private VoxelShape shape;
-    @Nullable
-    private Vector3f scale;
-    @Nullable
-    private Vector3f translation;
-    @Nullable
-    private Vector3f rawRotation;
-    @Nullable
-    private Quaternion rotation;
     private int light = 0;
 
     public CustomBlockBlockEntity(BlockPos pos, BlockState state) {
         super(HLBlockEntities.CUSTOM_BLOCK_BLOCK_ENTITY.get(), pos, state);
     }
 
+    @Override
     public String getModelId() { return (modelId != null) ? modelId : DEFAULT_MODEL_ID; }
 
+    @Override
+    public Vector3f getModelScale() { return (modelScale != null) ? modelScale : DEFAULT_MODEL_SCALE; }
+
+    @Override
+    public Vector3f getModelTranslation() { return (modelTranslation != null) ? modelTranslation : DEFAULT_MODEL_TRANSLATION; }
+
+    @Override
+    public Vector3f getModelRotation() { return (modelRotation != null) ? modelRotation : DEFAULT_MODEL_ROTATION; }
+
+    @Override
     public VoxelShape getShape() { return (shape != null) ? shape : DEFAULT_SHAPE; }
 
+    @Override
     public double[] getRawShape() { return (rawShape != null) ? rawShape : DEFAULT_RAW_SHAPE; }
 
-    public Vector3f getModelScale() { return (scale != null) ? scale : DEFAULT_MODEL_SCALE; }
-
-    public Vector3f getModelTranslation() { return (translation != null) ? translation : DEFAULT_MODEL_TRANSLATION; }
-
-    public Quaternion getModelRotation() { return (rotation != null) ? rotation : DEFAULT_MODEL_ROTATION; }
-
-    public Vector3f getRawModelRotation() { return (rawRotation != null) ? rawRotation : DEFAULT_RAW_MODEL_ROTATION; }
-
+    @Override
     public int getLight() { return light; }
 
     // ====================================================================== //
@@ -76,7 +66,8 @@ public class CustomBlockBlockEntity extends BlockEntity {
     @Override
     protected void saveAdditional(CompoundTag nbt) {
         super.saveAdditional(nbt);
-        saveData(nbt, modelId, rawShape, scale, translation, rawRotation, light);
+        writeModelData(nbt);
+        writeAdditionalData(nbt);
     }
 
     @Override
@@ -92,22 +83,16 @@ public class CustomBlockBlockEntity extends BlockEntity {
             this.rawShape = DEFAULT_RAW_SHAPE;
             this.shape = DEFAULT_SHAPE;
         }
-        this.scale = NbtUtils.getVector3fOrElse(nbt, NBT_MODEL_SCALE, DEFAULT_MODEL_SCALE);
-        this.translation = NbtUtils.getVector3fOrElse(nbt, NBT_MODEL_TRANSLATION, DEFAULT_MODEL_TRANSLATION);
-        var rawRotation = NbtUtils.getVector3fOrElse(nbt, NBT_MODEL_ROTATION, DEFAULT_RAW_MODEL_ROTATION);
-        this.rawRotation = rawRotation;
-        this.rotation = new Quaternion(rawRotation.x(), rawRotation.y(), rawRotation.z(), true);
+        this.modelScale = NbtUtils.getVector3fOrElse(nbt, NBT_MODEL_SCALE, DEFAULT_MODEL_SCALE);
+        this.modelTranslation = NbtUtils.getVector3fOrElse(nbt, NBT_MODEL_TRANSLATION, DEFAULT_MODEL_TRANSLATION);
+        this.modelRotation = NbtUtils.getVector3fOrElse(nbt, NBT_MODEL_ROTATION, DEFAULT_MODEL_ROTATION);
+
     }
 
-    public static CompoundTag saveData(CompoundTag nbt, @Nullable String modelId, @Nullable double[] rawShape, @Nullable Vector3f scale, @Nullable Vector3f translation, @Nullable Vector3f rawRotation, int light) {
-        if (rawShape != null && rawShape.length == 6) nbt.put(NBT_SHAPE, NbtUtils.writeDoubleArray(rawShape));
-        nbt.putInt(NBT_LIGHT, light);
-        if (modelId != null) nbt.putString(NBT_MODEL_ID, modelId.toString());
-        if (scale != null) nbt.put(NBT_MODEL_SCALE, NbtUtils.writeVector3f(scale));
-        if (translation != null) nbt.put(NBT_MODEL_TRANSLATION, NbtUtils.writeVector3f(translation));
-        if (rawRotation != null) nbt.put(NBT_MODEL_ROTATION, NbtUtils.writeVector3f(rawRotation));
-        return nbt;
-    }
+    // ====================================================================== //
+
+    @Override
+    public String getDataAccessorSelector() { return String.format("%d %d %d", worldPosition.getX(), worldPosition.getY(), worldPosition.getZ()); }
 
     // ====================================================================== //
 
