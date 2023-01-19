@@ -23,15 +23,6 @@ public final class HLClientModEventHandler {
     }
 
     @SubscribeEvent
-    public static void onModelRegister(ModelRegistryEvent event) {
-        ModelBakery modelBakery = ForgeModelBakery.instance();
-        ResourceManager resourceManager = ObfuscationReflectionHelper.getPrivateValue(ModelBakery.class, modelBakery, "f_119243_");
-        {
-            CustomBlockModelReloadListener.apply(resourceManager);
-        }
-    }
-
-    @SubscribeEvent
     public static void onRendererRegister(RegisterRenderers event) {
         CustomBlockBlockEntityRenderer.register(event);
     }
