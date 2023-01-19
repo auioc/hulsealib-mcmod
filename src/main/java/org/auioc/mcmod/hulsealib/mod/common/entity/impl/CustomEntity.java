@@ -3,16 +3,24 @@ package org.auioc.mcmod.hulsealib.mod.common.entity.impl;
 import org.auioc.mcmod.arnicalib.game.entity.HEntityDataSerializers;
 import org.auioc.mcmod.arnicalib.game.nbt.NbtUtils;
 import org.auioc.mcmod.hulsealib.mod.api.ICustomEntity;
+import org.auioc.mcmod.hulsealib.mod.client.gui.screen.CustomEntityScreen;
 import com.mojang.math.Vector3f;
+import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.fml.DistExecutor;
+import net.minecraftforge.fml.DistExecutor.SafeRunnable;
 import net.minecraftforge.network.NetworkHooks;
 
 public class CustomEntity extends Entity implements ICustomEntity {
@@ -75,6 +83,19 @@ public class CustomEntity extends Entity implements ICustomEntity {
 
     // ====================================================================== //
 
+    @Override
+    public InteractionResult interact(Player player, InteractionHand p_19979_) {
+        if (this.level.isClientSide && player.hasPermissions(2) && player.isShiftKeyDown()) {
+            var entity = this;
+            DistExecutor.safeRunWhenOn(
+                Dist.CLIENT, () -> new SafeRunnable() {
+                    public void run() { Minecraft.getInstance().setScreen(new CustomEntityScreen<CustomEntity>(entity)); }
+                }
+            );
+            return InteractionResult.SUCCESS;
+        }
+        return InteractionResult.PASS;
+    }
 
     // ====================================================================== //
 
