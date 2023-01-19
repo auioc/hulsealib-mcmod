@@ -15,9 +15,6 @@ import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.CycleButton;
 import net.minecraft.client.gui.components.EditBox;
-import net.minecraft.client.gui.components.Widget;
-import net.minecraft.client.gui.components.events.GuiEventListener;
-import net.minecraft.client.gui.narration.NarratableEntry;
 import net.minecraft.client.gui.narration.NarrationElementOutput;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.core.BlockPos;
@@ -110,9 +107,7 @@ public class CustomBlockScreen extends SimpleScreen {
 
     @Override
     protected void init() {
-        // TODO arnicalib
-        final int divX = center(this.width, this.divWidth);
-        final int divY = center(this.height, this.divHeight);
+        super.init();
 
         final int col1 = divX + colX(1);
         final int col2 = divX + colX(2);
@@ -133,49 +128,49 @@ public class CustomBlockScreen extends SimpleScreen {
         final int row4W = row4L + LABEL_HEIGHT;
 
         labels.add(new Label(LABEL_MODEL_ID, col1, row1L));
-        modelIdEditbox = renderable(new EditBox(font, col1, row1L + LABEL_HEIGHT, WIDGET_WIDTH_1_1, WIDGET_HEIGHT, LABEL_MODEL_ID));
+        modelIdEditbox = renderableWidget(new EditBox(font, col1, row1L + LABEL_HEIGHT, WIDGET_WIDTH_1_1, WIDGET_HEIGHT, LABEL_MODEL_ID));
         modelIdEditbox.setMaxLength(60);
         modelIdEditbox.setFilter(CustomBlockScreen::isValidModelId);
 
         labels.add(new Label(LABEL_SHAPE, col1, row2L));
-        shapeX1Slider = renderable(slider16(col1, row2W, LABEL_X));
-        shapeY1Slider = renderable(slider16(col2, row2W, LABEL_Y));
-        shapeZ1Slider = renderable(slider16(col3, row2W, LABEL_Z));
-        shapeX2Slider = renderable(slider16(col4, row2W, LABEL_X));
-        shapeY2Slider = renderable(slider16(col5, row2W, LABEL_Y));
-        shapeZ2Slider = renderable(slider16(col6, row2W, LABEL_Z));
+        shapeX1Slider = renderableWidget(slider16(col1, row2W, LABEL_X));
+        shapeY1Slider = renderableWidget(slider16(col2, row2W, LABEL_Y));
+        shapeZ1Slider = renderableWidget(slider16(col3, row2W, LABEL_Z));
+        shapeX2Slider = renderableWidget(slider16(col4, row2W, LABEL_X));
+        shapeY2Slider = renderableWidget(slider16(col5, row2W, LABEL_Y));
+        shapeZ2Slider = renderableWidget(slider16(col6, row2W, LABEL_Z));
 
         labels.add(new Label(LABEL_SCALE, col1, row3L));
-        scaleXSlider = renderable(slider2(col1, row3W, LABEL_X));
-        scaleYSlider = renderable(slider2(col2, row3W, LABEL_Y));
-        scaleZSlider = renderable(slider2(col3, row3W, LABEL_Z));
+        scaleXSlider = renderableWidget(slider2(col1, row3W, LABEL_X));
+        scaleYSlider = renderableWidget(slider2(col2, row3W, LABEL_Y));
+        scaleZSlider = renderableWidget(slider2(col3, row3W, LABEL_Z));
 
         labels.add(new Label(LABEL_TRANSLATION, col4, row3L));
-        translationXSlider = renderable(slider1(col4, row3W, LABEL_X));
-        translationYSlider = renderable(slider1(col5, row3W, LABEL_Y));
-        translationZSlider = renderable(slider1(col6, row3W, LABEL_Z));
+        translationXSlider = renderableWidget(slider1(col4, row3W, LABEL_X));
+        translationYSlider = renderableWidget(slider1(col5, row3W, LABEL_Y));
+        translationZSlider = renderableWidget(slider1(col6, row3W, LABEL_Z));
 
         labels.add(new Label(LABEL_ROTATION, col1, row4L));
-        rotationXSlider = renderable(slider360(col1, row4W, LABEL_X));
-        rotationYSlider = renderable(slider360(col2, row4W, LABEL_Y));
-        rotationZSlider = renderable(slider360(col3, row4W, LABEL_Z));
+        rotationXSlider = renderableWidget(slider360(col1, row4W, LABEL_X));
+        rotationYSlider = renderableWidget(slider360(col2, row4W, LABEL_Y));
+        rotationZSlider = renderableWidget(slider360(col3, row4W, LABEL_Z));
 
         labels.add(new Label(LABEL_LIGHT, col4, row4L));
-        lightSlider = renderable(slider15(col4, row4W));
+        lightSlider = renderableWidget(slider15(col4, row4W));
 
-        commandPreviewBox = renderable(new CommandPreviewBox(col1, row5S, colX(5) - PADDING - COL_GAP, (WIDGET_HEIGHT * 3) + 2));
+        commandPreviewBox = renderableWidget(new CommandPreviewBox(col1, row5S, colX(5) - PADDING - COL_GAP, (WIDGET_HEIGHT * 3) + 2));
 
-        copyOnlyCycleButton = renderable(
+        copyOnlyCycleButton = renderableWidget(
             CycleButton
                 .booleanBuilder(LABEL_COPY_COMMAND_ONLY, LABEL_MODIFY_DIRECTLY)
                 .withInitialValue(false)
                 .create(col5, row5S, WIDGET_WIDTH_1_3, WIDGET_HEIGHT, LABEL_MODE)
         );
 
-        reloadButton = renderable(new Button(col5, row6S, WIDGET_WIDTH_1_6, WIDGET_HEIGHT, LABEL_RELOAD, (b) -> loadData(true)));
-        resetButton = renderable(new Button(col6, row6S, WIDGET_WIDTH_1_6, WIDGET_HEIGHT, LABEL_RESET, (b) -> loadData(false)));
-        doneButton = renderable(new Button(col5, row7S, WIDGET_WIDTH_1_6, WIDGET_HEIGHT, LABEL_DONE, (b) -> done()));
-        cancelButton = renderable(new Button(col6, row7S, WIDGET_WIDTH_1_6, WIDGET_HEIGHT, LABEL_CANCEL, (b) -> closeScreen()));
+        reloadButton = renderableWidget(new Button(col5, row6S, WIDGET_WIDTH_1_6, WIDGET_HEIGHT, LABEL_RELOAD, (b) -> loadData(true)));
+        resetButton = renderableWidget(new Button(col6, row6S, WIDGET_WIDTH_1_6, WIDGET_HEIGHT, LABEL_RESET, (b) -> loadData(false)));
+        doneButton = renderableWidget(new Button(col5, row7S, WIDGET_WIDTH_1_6, WIDGET_HEIGHT, LABEL_DONE, (b) -> done()));
+        cancelButton = renderableWidget(new Button(col6, row7S, WIDGET_WIDTH_1_6, WIDGET_HEIGHT, LABEL_CANCEL, (b) -> closeScreen()));
 
         loadData(true);
         originalCommand = getCommandString();
@@ -259,11 +254,6 @@ public class CustomBlockScreen extends SimpleScreen {
     }
 
     // ====================================================================== //
-
-    private <T extends GuiEventListener & Widget & NarratableEntry> T renderable(T _widget) {
-        addRenderableWidget(_widget);
-        return _widget;
-    }
 
     private static int widgetWidth(int d) {
         return (WIDGET_WIDTH_1_1 - COL_GAP * (d - 1)) / d;
