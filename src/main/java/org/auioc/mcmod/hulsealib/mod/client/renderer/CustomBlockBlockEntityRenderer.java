@@ -30,9 +30,9 @@ public class CustomBlockBlockEntityRenderer implements BlockEntityRenderer<Custo
 
         poseStack.pushPose();
         {
-            RenderUtils.scale(poseStack, tile.getScale());
-            RenderUtils.translate(poseStack, tile.getTranslation());
-            RenderUtils.rotate(poseStack, tile.getRotation());
+            RenderUtils.scale(poseStack, tile.getModelScale());
+            RenderUtils.translate(poseStack, tile.getModelTranslation());
+            RenderUtils.rotate(poseStack, tile.getModelRotation());
             RenderUtils.renderSingleBlock(blockState, model, modelData, blockRenderer, poseStack, bufferSource, combinedLight, combinedOverlay);
         }
         poseStack.popPose();

@@ -22,11 +22,18 @@ public class CustomBlockBlockEntity extends BlockEntity {
     public static final String DEFAULT_MODEL_ID = "hulsealib:custom_block#";
     public static final VoxelShape DEFAULT_SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D);
     public static final double[] DEFAULT_RAW_SHAPE = new double[] {0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D};
-    public static final Vector3f DEFAULT_TRANSLATION = new Vector3f(0.0F, 0.0F, 0.0F);
-    public static final Quaternion DEFAULT_ROTATION = new Quaternion(0.0F, 0.0F, 0.0F, true);
-    public static final Vector3f DEFAULT_RAW_ROTATION = new Vector3f(0.0F, 0.0F, 0.0F);
-    public static final Vector3f DEFAULT_SCALE = new Vector3f(1.0F, 1.0F, 1.0F);
+    public static final Vector3f DEFAULT_MODEL_TRANSLATION = new Vector3f(0.0F, 0.0F, 0.0F);
+    public static final Quaternion DEFAULT_MODEL_ROTATION = new Quaternion(0.0F, 0.0F, 0.0F, true);
+    public static final Vector3f DEFAULT_RAW_MODEL_ROTATION = new Vector3f(0.0F, 0.0F, 0.0F);
+    public static final Vector3f DEFAULT_MODEL_SCALE = new Vector3f(1.0F, 1.0F, 1.0F);
     public static final int DEFAULT_LIGHT = 0;
+
+    private static final String NBT_SHAPE = "Shape";
+    private static final String NBT_LIGHT = "Light";
+    private static final String NBT_MODEL_ID = "ModelId";
+    private static final String NBT_MODEL_SCALE = "ModelScale";
+    private static final String NBT_MODEL_TRANSLATION = "ModelTranslation";
+    private static final String NBT_MODEL_ROTATION = "ModelRotation";
 
     @Nullable
     private String modelId;
@@ -54,13 +61,13 @@ public class CustomBlockBlockEntity extends BlockEntity {
 
     public double[] getRawShape() { return (rawShape != null) ? rawShape : DEFAULT_RAW_SHAPE; }
 
-    public Vector3f getScale() { return (scale != null) ? scale : DEFAULT_SCALE; }
+    public Vector3f getModelScale() { return (scale != null) ? scale : DEFAULT_MODEL_SCALE; }
 
-    public Vector3f getTranslation() { return (translation != null) ? translation : DEFAULT_TRANSLATION; }
+    public Vector3f getModelTranslation() { return (translation != null) ? translation : DEFAULT_MODEL_TRANSLATION; }
 
-    public Quaternion getRotation() { return (rotation != null) ? rotation : DEFAULT_ROTATION; }
+    public Quaternion getModelRotation() { return (rotation != null) ? rotation : DEFAULT_MODEL_ROTATION; }
 
-    public Vector3f getRawRotation() { return (rawRotation != null) ? rawRotation : DEFAULT_RAW_ROTATION; }
+    public Vector3f getRawModelRotation() { return (rawRotation != null) ? rawRotation : DEFAULT_RAW_MODEL_ROTATION; }
 
     public int getLight() { return light; }
 
@@ -75,8 +82,9 @@ public class CustomBlockBlockEntity extends BlockEntity {
     @Override
     public void load(CompoundTag nbt) {
         super.load(nbt);
-        if (nbt.contains("Model", Tag.TAG_STRING)) this.modelId = nbt.getString("Model");
-        var rawShape = NbtUtils.getDoubleArray(nbt, "Shape");
+        var rawShape = NbtUtils.getDoubleArray(nbt, NBT_SHAPE);
+        this.light = Mth.clamp(nbt.getInt(NBT_LIGHT), 0, 15);
+        if (nbt.contains(NBT_MODEL_ID, Tag.TAG_STRING)) this.modelId = nbt.getString(NBT_MODEL_ID);
         if (rawShape.length == 6) {
             this.rawShape = rawShape;
             this.shape = Block.box(rawShape[0], rawShape[1], rawShape[2], rawShape[3], rawShape[4], rawShape[5]);
@@ -84,21 +92,20 @@ public class CustomBlockBlockEntity extends BlockEntity {
             this.rawShape = DEFAULT_RAW_SHAPE;
             this.shape = DEFAULT_SHAPE;
         }
-        this.scale = NbtUtils.getVector3fOrElse(nbt, "Scale", DEFAULT_SCALE);
-        this.translation = NbtUtils.getVector3fOrElse(nbt, "Translation", DEFAULT_TRANSLATION);
-        var rawRotation = NbtUtils.getVector3fOrElse(nbt, "Rotation", DEFAULT_RAW_ROTATION);
+        this.scale = NbtUtils.getVector3fOrElse(nbt, NBT_MODEL_SCALE, DEFAULT_MODEL_SCALE);
+        this.translation = NbtUtils.getVector3fOrElse(nbt, NBT_MODEL_TRANSLATION, DEFAULT_MODEL_TRANSLATION);
+        var rawRotation = NbtUtils.getVector3fOrElse(nbt, NBT_MODEL_ROTATION, DEFAULT_RAW_MODEL_ROTATION);
         this.rawRotation = rawRotation;
         this.rotation = new Quaternion(rawRotation.x(), rawRotation.y(), rawRotation.z(), true);
-        this.light = Mth.clamp(nbt.getInt("Light"), 0, 15);
     }
 
     public static CompoundTag saveData(CompoundTag nbt, @Nullable String modelId, @Nullable double[] rawShape, @Nullable Vector3f scale, @Nullable Vector3f translation, @Nullable Vector3f rawRotation, int light) {
-        if (modelId != null) nbt.putString("Model", modelId.toString());
-        if (rawShape != null && rawShape.length == 6) nbt.put("Shape", NbtUtils.writeDoubleArray(rawShape));
-        if (scale != null) nbt.put("Scale", NbtUtils.writeVector3f(scale));
-        if (translation != null) nbt.put("Translation", NbtUtils.writeVector3f(translation));
-        if (rawRotation != null) nbt.put("Rotation", NbtUtils.writeVector3f(rawRotation));
-        nbt.putInt("Light", light);
+        if (rawShape != null && rawShape.length == 6) nbt.put(NBT_SHAPE, NbtUtils.writeDoubleArray(rawShape));
+        nbt.putInt(NBT_LIGHT, light);
+        if (modelId != null) nbt.putString(NBT_MODEL_ID, modelId.toString());
+        if (scale != null) nbt.put(NBT_MODEL_SCALE, NbtUtils.writeVector3f(scale));
+        if (translation != null) nbt.put(NBT_MODEL_TRANSLATION, NbtUtils.writeVector3f(translation));
+        if (rawRotation != null) nbt.put(NBT_MODEL_ROTATION, NbtUtils.writeVector3f(rawRotation));
         return nbt;
     }
 

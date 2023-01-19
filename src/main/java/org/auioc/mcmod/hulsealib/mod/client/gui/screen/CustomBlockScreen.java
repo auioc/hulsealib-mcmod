@@ -194,15 +194,15 @@ public class CustomBlockScreen extends SimpleScreen {
         shapeX2Slider.setRealValue(shape[3]);
         shapeY2Slider.setRealValue(shape[4]);
         shapeZ2Slider.setRealValue(shape[5]);
-        var scale = useTile ? tile.getScale() : CustomBlockBlockEntity.DEFAULT_SCALE;
+        var scale = useTile ? tile.getModelScale() : CustomBlockBlockEntity.DEFAULT_MODEL_SCALE;
         scaleXSlider.setRealValue(scale.x());
         scaleYSlider.setRealValue(scale.y());
         scaleZSlider.setRealValue(scale.z());
-        var translation = useTile ? tile.getTranslation() : CustomBlockBlockEntity.DEFAULT_TRANSLATION;
+        var translation = useTile ? tile.getModelTranslation() : CustomBlockBlockEntity.DEFAULT_MODEL_TRANSLATION;
         translationXSlider.setRealValue(translation.x());
         translationYSlider.setRealValue(translation.y());
         translationZSlider.setRealValue(translation.z());
-        var rotation = useTile ? tile.getRawRotation() : CustomBlockBlockEntity.DEFAULT_RAW_ROTATION;
+        var rotation = useTile ? tile.getRawModelRotation() : CustomBlockBlockEntity.DEFAULT_RAW_MODEL_ROTATION;
         rotationXSlider.setRealValue(rotation.x());
         rotationYSlider.setRealValue(rotation.y());
         rotationZSlider.setRealValue(rotation.z());
