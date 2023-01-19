@@ -8,7 +8,6 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.block.BlockRenderDispatcher;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
-import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.EntityRenderersEvent.RegisterRenderers;
@@ -32,7 +31,7 @@ public class CustomBlockBlockEntityRenderer implements BlockEntityRenderer<Custo
         poseStack.pushPose();
         {
             RenderUtils.scale(poseStack, tile.getScale());
-            RenderUtils.translate(poseStack, new Vec3(tile.getTranslation())); // TODO arincalib
+            RenderUtils.translate(poseStack, tile.getTranslation());
             RenderUtils.rotate(poseStack, tile.getRotation());
             RenderUtils.renderSingleBlock(blockState, model, modelData, blockRenderer, poseStack, bufferSource, combinedLight, combinedOverlay);
         }

@@ -66,7 +66,8 @@ public class CustomBlockBakedModel implements BakedModel {
     @Nonnull
     @Override
     public List<BakedQuad> getQuads(@Nullable BlockState state, @Nullable Direction side, @Nonnull Random rand, @Nonnull IModelData data) {
-        return data.getData(MODEL).getQuads(state, side, rand, data);
+        var model = data.getData(MODEL);
+        return (model != null) ? model.getQuads(state, side, rand, data) : defaultModel.getQuads(state, side, rand, data);
     }
 
     @Override
