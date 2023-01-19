@@ -1,6 +1,7 @@
 package org.auioc.mcmod.hulsealib.mod.client.renderer;
 
 import org.auioc.mcmod.arnicalib.game.render.RenderUtils;
+import org.auioc.mcmod.arnicalib.game.resource.ResourceUtils;
 import org.auioc.mcmod.hulsealib.mod.common.entity.HLEntities;
 import org.auioc.mcmod.hulsealib.mod.common.entity.impl.CustomEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -9,7 +10,6 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
-import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -25,13 +25,7 @@ public class CustomEntityRenderer extends EntityRenderer<CustomEntity> {
 
     @Override
     public void render(CustomEntity entity, float entityYaw, float partialTicks, PoseStack poseStack, MultiBufferSource bufferSource, int combinedLight) {
-        var modelId = entity.getModelId();
-        // modelId = "minecraft:apple#inventory";
-        var model = Minecraft.getInstance().getModelManager().getModel(
-            modelId.contains("#")
-                ? new ModelResourceLocation(modelId)
-                : new ResourceLocation(modelId)
-        );
+        var model = ResourceUtils.getBakedModel(entity.getModelId());
 
         poseStack.pushPose();
         {

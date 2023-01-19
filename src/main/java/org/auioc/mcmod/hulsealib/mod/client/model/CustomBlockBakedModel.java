@@ -4,20 +4,17 @@ import java.util.List;
 import java.util.Random;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import org.auioc.mcmod.arnicalib.game.resource.ResourceUtils;
 import org.auioc.mcmod.hulsealib.mod.common.block.HLBlocks;
 import org.auioc.mcmod.hulsealib.mod.common.block.impl.CustomBlock;
 import org.auioc.mcmod.hulsealib.mod.common.blockentity.impl.CustomBlockBlockEntity;
-import net.minecraft.ResourceLocationException;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.BlockModelShaper;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.block.model.ItemOverrides;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.model.BakedModel;
-import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.BlockAndTintGetter;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.api.distmarker.Dist;
@@ -29,8 +26,6 @@ import net.minecraftforge.client.model.data.ModelProperty;
 
 @OnlyIn(Dist.CLIENT)
 public class CustomBlockBakedModel implements BakedModel {
-
-    private static final Minecraft MC = Minecraft.getInstance();
 
     private final BakedModel defaultModel;
     private static final ModelProperty<BakedModel> MODEL = new ModelProperty<>();
@@ -47,16 +42,7 @@ public class CustomBlockBakedModel implements BakedModel {
             (tile) -> {
                 var modelId = tile.getModelId();
                 if (!modelId.equals(CustomBlockBlockEntity.DEFAULT_MODEL_ID)) {
-                    try {
-                        data.setData(
-                            MODEL, MC.getModelManager().getModel(
-                                modelId.contains("#")
-                                    ? new ModelResourceLocation(modelId)
-                                    : new ResourceLocation(modelId)
-                            )
-                        );
-                    } catch (ResourceLocationException e) {
-                    }
+                    data.setData(MODEL, ResourceUtils.getBakedModel(modelId));
                 }
             }
         );

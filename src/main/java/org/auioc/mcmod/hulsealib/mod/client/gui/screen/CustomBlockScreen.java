@@ -4,26 +4,24 @@ import java.util.ArrayList;
 import java.util.List;
 import org.auioc.mcmod.arnicalib.game.chat.TextUtils;
 import org.auioc.mcmod.arnicalib.game.gui.screen.SimpleScreen;
+import org.auioc.mcmod.arnicalib.game.resource.ResourceUtils;
 import org.auioc.mcmod.hulsealib.HulseaLib;
 import org.auioc.mcmod.hulsealib.mod.common.blockentity.impl.CustomBlockBlockEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
 import net.minecraft.ChatFormatting;
-import net.minecraft.ResourceLocationException;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.CycleButton;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.narration.NarrationElementOutput;
-import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtUtils;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.TextComponent;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.gui.widget.ForgeSlider;
@@ -130,7 +128,7 @@ public class CustomBlockScreen extends SimpleScreen {
         labels.add(new Label(LABEL_MODEL_ID, col1, row1L));
         modelIdEditbox = renderableWidget(new EditBox(font, col1, row1L + LABEL_HEIGHT, WIDGET_WIDTH_1_1, WIDGET_HEIGHT, LABEL_MODEL_ID));
         modelIdEditbox.setMaxLength(60);
-        modelIdEditbox.setFilter(CustomBlockScreen::isValidModelId);
+        modelIdEditbox.setFilter(ResourceUtils::isValidModelId);
 
         labels.add(new Label(LABEL_SHAPE, col1, row2L));
         shapeX1Slider = renderableWidget(slider16(col1, row2W, LABEL_X));
@@ -265,19 +263,6 @@ public class CustomBlockScreen extends SimpleScreen {
 
     private static int colX(int col) {
         return PADDING + (COL_GAP * (col - 1)) + (WIDGET_WIDTH_1_6 * (col - 1));
-    }
-
-    private static boolean isValidModelId(String str) {
-        try {
-            if (str.contains("#")) {
-                new ModelResourceLocation(str);
-            } else {
-                new ResourceLocation(str);
-            }
-            return true;
-        } catch (ResourceLocationException e) {
-            return false;
-        }
     }
 
     private static Slider slider15(int x, int y) {
