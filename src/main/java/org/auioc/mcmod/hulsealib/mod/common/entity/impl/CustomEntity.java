@@ -16,6 +16,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
@@ -24,6 +25,8 @@ import net.minecraftforge.fml.DistExecutor.SafeRunnable;
 import net.minecraftforge.network.NetworkHooks;
 
 public class CustomEntity extends Entity implements ICustomEntity {
+
+    public static final EntityType<CustomEntity> TYPE = EntityType.Builder.of(CustomEntity::new, MobCategory.MISC).sized(1.0F, 1.0F).build("custom_entity");
 
     private static final EntityDataAccessor<String> MODEL_ID = SynchedEntityData.defineId(CustomEntity.class, EntityDataSerializers.STRING);
     private static final EntityDataAccessor<Vector3f> MODEL_SCALE = SynchedEntityData.defineId(CustomEntity.class, HEntityDataSerializers.VECTOR3F);

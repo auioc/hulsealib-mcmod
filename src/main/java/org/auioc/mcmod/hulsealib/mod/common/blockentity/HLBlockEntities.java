@@ -2,7 +2,6 @@ package org.auioc.mcmod.hulsealib.mod.common.blockentity;
 
 import java.util.function.Supplier;
 import org.auioc.mcmod.hulsealib.HulseaLib;
-import org.auioc.mcmod.hulsealib.mod.common.block.HLBlocks;
 import org.auioc.mcmod.hulsealib.mod.common.blockentity.impl.CustomBlockBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -18,7 +17,6 @@ public final class HLBlockEntities {
 
     // ============================================================================================================== //
 
-    public final static RegistryObject<BlockEntityType<CustomBlockBlockEntity>> CUSTOM_BLOCK_BLOCK_ENTITY =
-        register("custom_block", () -> BlockEntityType.Builder.of(CustomBlockBlockEntity::new, HLBlocks.CUSTOM_BLOCK.get()).build(null));
+    public final static RegistryObject<BlockEntityType<CustomBlockBlockEntity>> CUSTOM_BLOCK_BLOCK_ENTITY = register("custom_block", () -> CustomBlockBlockEntity.TYPE);
 
 }

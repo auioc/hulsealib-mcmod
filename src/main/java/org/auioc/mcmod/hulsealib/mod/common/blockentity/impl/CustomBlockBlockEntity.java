@@ -3,6 +3,7 @@ package org.auioc.mcmod.hulsealib.mod.common.blockentity.impl;
 import javax.annotation.Nullable;
 import org.auioc.mcmod.arnicalib.game.nbt.NbtUtils;
 import org.auioc.mcmod.hulsealib.mod.api.ICustomBlock;
+import org.auioc.mcmod.hulsealib.mod.common.block.HLBlocks;
 import org.auioc.mcmod.hulsealib.mod.common.blockentity.HLBlockEntities;
 import com.mojang.math.Vector3f;
 import net.minecraft.core.BlockPos;
@@ -14,10 +15,13 @@ import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.util.Mth;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class CustomBlockBlockEntity extends BlockEntity implements ICustomBlock {
+
+    public static final BlockEntityType<CustomBlockBlockEntity> TYPE = BlockEntityType.Builder.of(CustomBlockBlockEntity::new, HLBlocks.CUSTOM_BLOCK.get()).build(null);
 
     private static final String NBT_SHAPE = "Shape";
     private static final String NBT_LIGHT = "Light";
