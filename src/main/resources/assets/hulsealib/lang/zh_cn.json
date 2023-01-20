@@ -16,5 +16,7 @@
     "hulsealib.gui.custom_model.scale": "缩放",
 
     "hulsealib.gui.custom_block.shape": "形状",
-    "hulsealib.gui.custom_block.light": "亮度"
+    "hulsealib.gui.custom_block.light": "亮度",
+
+    "hulsealib.gui.custom_entity.kill": "删除"
 }

@@ -16,5 +16,7 @@
     "hulsealib.gui.custom_model.scale": "Scale",
 
     "hulsealib.gui.custom_block.shape": "Shape",
-    "hulsealib.gui.custom_block.light": "Light"
+    "hulsealib.gui.custom_block.light": "Light",
+
+    "hulsealib.gui.custom_entity.kill": "Kill"
 }
