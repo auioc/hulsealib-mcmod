@@ -3,6 +3,7 @@ package org.auioc.mcmod.hulsealib.mod.client.gui.screen;
 import java.util.ArrayList;
 import java.util.List;
 import org.auioc.mcmod.arnicalib.game.chat.TextUtils;
+import org.auioc.mcmod.arnicalib.game.gui.component.CloseButton;
 import org.auioc.mcmod.arnicalib.game.gui.screen.SimpleScreen;
 import org.auioc.mcmod.arnicalib.game.resource.ResourceUtils;
 import org.auioc.mcmod.hulsealib.HulseaLib;
@@ -90,24 +91,14 @@ public class CustomModelObjectScreen<T extends ICustomModelObject> extends Simpl
     private Slider rotationZSlider;
     private CommandPreviewBox commandPreviewBox;
     private CycleButton<Boolean> copyOnlyCycleButton;
-    @SuppressWarnings("unused")
-    private Button doneButton;
-    @SuppressWarnings("unused")
-    private Button cancelButton;
-    @SuppressWarnings("unused")
-    private Button reloadButton;
-    @SuppressWarnings("unused")
-    private Button resetButton;
 
     public CustomModelObjectScreen(Component title, T customModelObject) {
-        super(title, DIV_WIDTH, DIV_HEIGHT);
+        super(title, DIV_WIDTH, DIV_HEIGHT, true);
         this.cmObj = customModelObject;
     }
 
     @Override
-    protected final void init() {
-        super.init();
-
+    protected final void subInit() {
         col1 = divX + colX(1);
         col2 = divX + colX(2);
         col3 = divX + colX(3);
@@ -130,20 +121,20 @@ public class CustomModelObjectScreen<T extends ICustomModelObject> extends Simpl
         modelIdEditbox.setMaxLength(60);
         modelIdEditbox.setFilter(ResourceUtils::isValidModelId);
 
-        addLabel(LABEL_SCALE, col1, row2L);
-        scaleXSlider = renderableWidget(slider2(col1, row2W, LABEL_X));
-        scaleYSlider = renderableWidget(slider2(col2, row2W, LABEL_Y));
-        scaleZSlider = renderableWidget(slider2(col3, row2W, LABEL_Z));
+        addLabel(LABEL_TRANSLATION, col1, row2L);
+        translationXSlider = renderableWidget(slider1(col1, row2W, LABEL_X));
+        translationYSlider = renderableWidget(slider1(col2, row2W, LABEL_Y));
+        translationZSlider = renderableWidget(slider1(col3, row2W, LABEL_Z));
 
-        addLabel(LABEL_ROTATION, col4, row2L);
-        rotationXSlider = renderableWidget(slider360(col4, row2W, LABEL_X));
-        rotationYSlider = renderableWidget(slider360(col5, row2W, LABEL_Y));
-        rotationZSlider = renderableWidget(slider360(col6, row2W, LABEL_Z));
+        addLabel(LABEL_SCALE, col4, row2L);
+        scaleXSlider = renderableWidget(slider2(col4, row2W, LABEL_X));
+        scaleYSlider = renderableWidget(slider2(col5, row2W, LABEL_Y));
+        scaleZSlider = renderableWidget(slider2(col6, row2W, LABEL_Z));
 
-        addLabel(LABEL_TRANSLATION, col1, row3L);
-        translationXSlider = renderableWidget(slider1(col1, row3W, LABEL_X));
-        translationYSlider = renderableWidget(slider1(col2, row3W, LABEL_Y));
-        translationZSlider = renderableWidget(slider1(col3, row3W, LABEL_Z));
+        addLabel(LABEL_ROTATION, col1, row3L);
+        rotationXSlider = renderableWidget(slider360(col1, row3W, LABEL_X));
+        rotationYSlider = renderableWidget(slider360(col2, row3W, LABEL_Y));
+        rotationZSlider = renderableWidget(slider360(col3, row3W, LABEL_Z));
 
         commandPreviewBox = renderableWidget(new CommandPreviewBox(col1, row5S, WIDGET_WIDTH_1_3 * 2 + COL_GAP, (WIDGET_HEIGHT * 3) + 2));
 
@@ -154,17 +145,18 @@ public class CustomModelObjectScreen<T extends ICustomModelObject> extends Simpl
                 .create(col5, row5S, WIDGET_WIDTH_1_3, WIDGET_HEIGHT, LABEL_MODE)
         );
 
-        reloadButton = renderableWidget(new Button(col5, row6S, WIDGET_WIDTH_1_6, WIDGET_HEIGHT, LABEL_RELOAD, (b) -> load()));
-        resetButton = renderableWidget(new Button(col6, row6S, WIDGET_WIDTH_1_6, WIDGET_HEIGHT, LABEL_RESET, (b) -> loadDefault()));
-        doneButton = renderableWidget(new Button(col5, row7S, WIDGET_WIDTH_1_6, WIDGET_HEIGHT, LABEL_DONE, (b) -> done()));
-        cancelButton = renderableWidget(new Button(col6, row7S, WIDGET_WIDTH_1_6, WIDGET_HEIGHT, LABEL_CANCEL, (b) -> closeScreen()));
+        renderableWidget(new Button(col5, row6S, WIDGET_WIDTH_1_6, WIDGET_HEIGHT, LABEL_RELOAD, (b) -> load()));
+        renderableWidget(new Button(col6, row6S, WIDGET_WIDTH_1_6, WIDGET_HEIGHT, LABEL_RESET, (b) -> loadDefault()));
+        renderableWidget(new Button(col5, row7S, WIDGET_WIDTH_1_6, WIDGET_HEIGHT, LABEL_DONE, (b) -> done()));
+        renderableWidget(new Button(col6, row7S, WIDGET_WIDTH_1_6, WIDGET_HEIGHT, LABEL_CANCEL, (b) -> closeScreen()));
+        renderableWidget(CloseButton.topLeft(divX + divWidth, divY));
 
-        subInit();
+        initAdditional();
 
         load();
     }
 
-    protected void subInit() {}
+    protected void initAdditional() {}
 
     @Override
     protected final void subRender(PoseStack poseStack, int mouseX, int mouseY, float partialTick) {
@@ -263,11 +255,11 @@ public class CustomModelObjectScreen<T extends ICustomModelObject> extends Simpl
     }
 
     protected static int rowY(int row) {
-        return PADDING / 2 + PADDING + (ROW_HEIGHT * (row - 1));
+        return PADDING + (ROW_HEIGHT * (row - 1));
     }
 
     protected static int colX(int col) {
-        return PADDING / 2 + PADDING + (COL_GAP * (col - 1)) + (WIDGET_WIDTH_1_6 * (col - 1));
+        return PADDING + (COL_GAP * (col - 1)) + (WIDGET_WIDTH_1_6 * (col - 1));
     }
 
 

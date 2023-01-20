@@ -30,7 +30,7 @@ public class CustomBlockScreen<T extends BlockEntity & ICustomBlock> extends Cus
     }
 
     @Override
-    protected void subInit() {
+    protected void initAdditional() {
         addLabel(LABEL_SHAPE, col1, row4L);
         shapeX1Slider = renderableWidget(slider16(col1, row4W, LABEL_X));
         shapeY1Slider = renderableWidget(slider16(col2, row4W, LABEL_Y));
