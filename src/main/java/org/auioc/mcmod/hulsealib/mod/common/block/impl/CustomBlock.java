@@ -50,7 +50,7 @@ public class CustomBlock extends BaseEntityBlock {
             if (tile.isPresent()) {
                 DistExecutor.safeRunWhenOn(
                     Dist.CLIENT, () -> new SafeRunnable() {
-                        public void run() { Minecraft.getInstance().setScreen(new CustomBlockScreen(tile.get())); }
+                        public void run() { Minecraft.getInstance().setScreen(new CustomBlockScreen<CustomBlockBlockEntity>(tile.get())); }
                     }
                 );
                 return InteractionResult.SUCCESS;
