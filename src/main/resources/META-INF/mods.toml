@@ -30,6 +30,6 @@ Shared library for AH's Minecraft mods.
 [[dependencies.hulsealib]]
     modId="arnicalib"
     mandatory=true
-    versionRange="[5.6.7,)"
+    versionRange="[5.7.0,)"
     ordering="NONE"
     side="BOTH"
