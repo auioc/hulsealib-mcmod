@@ -1,7 +1,7 @@
 package org.auioc.mcmod.hulsealib.game.event.server;
 
 import java.util.UUID;
-import org.auioc.mcmod.arnicalib.game.event.ServerPlayerEvent;
+import org.auioc.mcmod.arnicalib.game.event.server.ServerPlayerEvent;
 import net.minecraft.network.chat.ChatType;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;

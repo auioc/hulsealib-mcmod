@@ -1,6 +1,6 @@
 package org.auioc.mcmod.hulsealib.game.event.server;
 
-import org.auioc.mcmod.arnicalib.game.event.ServerPlayerEvent;
+import org.auioc.mcmod.arnicalib.game.event.server.ServerPlayerEvent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ItemStack;

@@ -149,7 +149,7 @@ public class CustomModelObjectScreen<T extends ICustomModelObject> extends Simpl
         renderableWidget(new Button(col6, row6S, WIDGET_WIDTH_1_6, WIDGET_HEIGHT, LABEL_RESET, (b) -> loadDefault()));
         renderableWidget(new Button(col5, row7S, WIDGET_WIDTH_1_6, WIDGET_HEIGHT, LABEL_DONE, (b) -> done()));
         renderableWidget(new Button(col6, row7S, WIDGET_WIDTH_1_6, WIDGET_HEIGHT, LABEL_CANCEL, (b) -> closeScreen()));
-        renderableWidget(CloseButton.topLeft(divX + divWidth, divY));
+        renderableWidget(CloseButton.topLeft(divX + divWidth, divY, this));
 
         initAdditional();
 

@@ -1,6 +1,6 @@
 package org.auioc.mcmod.hulsealib.game.event.common;
 
-import org.auioc.mcmod.arnicalib.game.event.FoodDataEvent;
+import org.auioc.mcmod.arnicalib.game.event.common.FoodDataEvent;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.food.FoodData;
 import net.minecraft.world.item.ItemStack;
