@@ -15,14 +15,14 @@ public class MixinItemStack {
 
     @Inject(
         method = "Lnet/minecraft/world/item/ItemStack;inventoryTick(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/Entity;IZ)V",
-        at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;getItem()Lnet/minecraft/world/item/Item;", ordinal = 1),
+        at = @At(value = "HEAD"),
         require = 1,
         allow = 1,
         cancellable = true
     )
     private void onInventoryTick(Level p_41667_, Entity p_41668_, int p_41669_, boolean p_41670_, CallbackInfo ci) {
-        if (p_41670_ && p_41668_ instanceof Player player) {
-            if (HLCommonEventFactory.onSelectedItemItemInventoryTick(player, p_41667_, ((ItemStack) (Object) this), p_41669_)) {
+        if (p_41668_ instanceof Player player) {
+            if (HLCommonEventFactory.onItemInventoryTick(player, p_41667_, ((ItemStack) (Object) this), p_41669_, p_41670_)) {
                 ci.cancel();
             }
         }

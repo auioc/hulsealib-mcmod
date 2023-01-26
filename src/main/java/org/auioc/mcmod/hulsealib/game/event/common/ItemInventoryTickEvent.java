@@ -6,6 +6,7 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.Cancelable;
 
+@Cancelable
 public class ItemInventoryTickEvent extends PlayerEvent {
 
     private final Level level;
@@ -35,15 +36,6 @@ public class ItemInventoryTickEvent extends PlayerEvent {
 
     public boolean isSelected() {
         return this.selected;
-    }
-
-    @Cancelable
-    public static class Selected extends ItemInventoryTickEvent {
-
-        public Selected(Player player, Level level, ItemStack itemStack, int index) {
-            super(player, level, itemStack, index, true);
-        }
-
     }
 
 }

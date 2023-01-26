@@ -21,8 +21,8 @@ public final class HLCommonEventFactory {
     /**
      * @see org.auioc.mcmod.hulsealib.mod.mixin.common.MixinItemStack#onInventoryTick
      */
-    public static boolean onSelectedItemItemInventoryTick(Player player, Level level, ItemStack itemStack, int index) {
-        return BUS.post(new ItemInventoryTickEvent.Selected(player, level, itemStack, index));
+    public static boolean onItemInventoryTick(Player player, Level level, ItemStack itemStack, int index, boolean selected) {
+        return BUS.post(new ItemInventoryTickEvent(player, level, itemStack, index, selected));
     }
 
     /**
