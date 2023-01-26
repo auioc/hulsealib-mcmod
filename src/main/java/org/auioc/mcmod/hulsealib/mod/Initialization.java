@@ -1,6 +1,7 @@
 package org.auioc.mcmod.hulsealib.mod;
 
 import org.auioc.mcmod.hulsealib.game.command.HLCommandArguments;
+import org.auioc.mcmod.hulsealib.mod.client.ClientInitialization;
 import org.auioc.mcmod.hulsealib.mod.common.block.HLBlocks;
 import org.auioc.mcmod.hulsealib.mod.common.blockentity.HLBlockEntities;
 import org.auioc.mcmod.hulsealib.mod.common.entity.HLEntities;

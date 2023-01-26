@@ -1,4 +1,4 @@
-package org.auioc.mcmod.hulsealib.mod;
+package org.auioc.mcmod.hulsealib.mod.client;
 
 import org.auioc.mcmod.hulsealib.mod.client.event.HLClientModEventHandler;
 import net.minecraftforge.api.distmarker.Dist;
