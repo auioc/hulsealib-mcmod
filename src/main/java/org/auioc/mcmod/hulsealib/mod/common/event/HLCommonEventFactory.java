@@ -18,16 +18,25 @@ public final class HLCommonEventFactory {
 
     private static final IEventBus BUS = MinecraftForge.EVENT_BUS;
 
+    /**
+     * @see org.auioc.mcmod.hulsealib.mod.mixin.common.MixinItemStack#onInventoryTick
+     */
     public static boolean onSelectedItemItemInventoryTick(Player player, Level level, ItemStack itemStack, int index) {
         return BUS.post(new ItemInventoryTickEvent.Selected(player, level, itemStack, index));
     }
 
+    /**
+     * @see org.auioc.mcmod.hulsealib.mod.mixin.common.MixinFoodData#eat
+     */
     public static LivingEatEvent onLivingEat(LivingEntity living, FoodData foodData, ItemStack foodItemStack) {
         var event = new LivingEatEvent(living, foodData, foodItemStack);
         BUS.post(event);
         return event;
     }
 
+    /**
+     * @see org.auioc.mcmod.hulsealib.mod.mixin.common.MixinPistonBaseBlock#onCheckPushable
+     */
     public static boolean onPistonCheckPushable(BlockState blockState, Level level, BlockPos blockPos, Direction facing, boolean destroyBlocks, Direction direction) {
         return BUS.post(new PistonPushableEvent(blockState, level, blockPos, facing, destroyBlocks, direction));
     }
