@@ -16,7 +16,12 @@ public class PreCrossbowReleaseEvent extends LivingEvent {
         this.projectile = projectile;
     }
 
+    @Deprecated(since = "1.1.1", forRemoval = true)
     public ItemStack getBow() {
+        return crossbow;
+    }
+
+    public ItemStack getCrossbow() {
         return crossbow;
     }
 
