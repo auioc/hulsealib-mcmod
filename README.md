@@ -32,5 +32,5 @@ Any type of contribution is welcome, here are some examples of how you may contr
 
 ## License
 
-hulsealib is licensed under the **GNU General Public License v3.0**.
+HulseaLib is licensed under the **GNU General Public License v3.0**.
 The full license is in the [LICENSE](/LICENSE) file.
