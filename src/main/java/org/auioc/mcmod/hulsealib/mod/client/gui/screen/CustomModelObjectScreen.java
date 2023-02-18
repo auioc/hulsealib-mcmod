@@ -3,7 +3,6 @@ package org.auioc.mcmod.hulsealib.mod.client.gui.screen;
 import java.util.ArrayList;
 import java.util.List;
 import org.auioc.mcmod.arnicalib.game.chat.TextUtils;
-import org.auioc.mcmod.arnicalib.game.gui.component.CloseButton;
 import org.auioc.mcmod.arnicalib.game.gui.screen.SimpleScreen;
 import org.auioc.mcmod.arnicalib.game.resource.ResourceUtils;
 import org.auioc.mcmod.hulsealib.HulseaLib;
@@ -99,17 +98,17 @@ public class CustomModelObjectScreen<T extends ICustomModelObject> extends Simpl
 
     @Override
     protected final void subInit() {
-        col1 = divX + colX(1);
-        col2 = divX + colX(2);
-        col3 = divX + colX(3);
-        col4 = divX + colX(4);
-        col5 = divX + colX(5);
-        col6 = divX + colX(6);
-        row1L = divY + rowY(1);
-        row2L = divY + rowY(2);
-        row3L = divY + rowY(3);
-        row4L = divY + rowY(4);
-        row5S = divY + rowY(5);
+        col1 = boxX1 + colX(1);
+        col2 = boxX1 + colX(2);
+        col3 = boxX1 + colX(3);
+        col4 = boxX1 + colX(4);
+        col5 = boxX1 + colX(5);
+        col6 = boxX1 + colX(6);
+        row1L = boxY1 + rowY(1);
+        row2L = boxY1 + rowY(2);
+        row3L = boxY1 + rowY(3);
+        row4L = boxY1 + rowY(4);
+        row5S = boxY1 + rowY(5);
         row6S = row5S + WIDGET_HEIGHT + 1;
         row7S = row6S + WIDGET_HEIGHT + 1;
         row2W = row2L + LABEL_HEIGHT;
@@ -149,7 +148,6 @@ public class CustomModelObjectScreen<T extends ICustomModelObject> extends Simpl
         renderableWidget(new Button(col6, row6S, WIDGET_WIDTH_1_6, WIDGET_HEIGHT, LABEL_RESET, (b) -> loadDefault()));
         renderableWidget(new Button(col5, row7S, WIDGET_WIDTH_1_6, WIDGET_HEIGHT, LABEL_DONE, (b) -> done()));
         renderableWidget(new Button(col6, row7S, WIDGET_WIDTH_1_6, WIDGET_HEIGHT, LABEL_CANCEL, (b) -> closeScreen()));
-        renderableWidget(CloseButton.topLeft(divX + divWidth, divY, this));
 
         initAdditional();
 
