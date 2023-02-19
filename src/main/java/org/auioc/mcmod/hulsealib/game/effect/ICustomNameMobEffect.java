@@ -8,7 +8,7 @@ public interface ICustomNameMobEffect {
 
     /**
      * @see org.auioc.mcmod.hulsealib.mod.mixin.client.MixinEffectRenderingInventoryScreen#getEffectName Mixin implemention
-     * @see net.minecraft.client.gui.screens.inventory.EffectRenderingInventoryScreen#getEffectName EffectRenderingInventoryScreen.class
+     * @see net.minecraft.client.gui.screens.inventory.EffectRenderingInventoryScreen#getEffectName EffectRenderingInventoryScreen#getEffectName
      */
     @Nullable
     default Component getEffectName(MobEffectInstance instance) {
