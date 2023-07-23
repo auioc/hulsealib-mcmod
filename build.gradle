@@ -5,10 +5,11 @@ buildscript {
         maven { url = 'https://repo.spongepowered.org/maven' }
     }
     dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '6.0.+', changing: true
         classpath 'org.spongepowered:mixingradle:0.7.+'
     }
 }
+
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 
@@ -27,13 +28,10 @@ dependencies {
     if (findProject(':arnicalib') != null) {
         implementation project(':arnicalib')
     } else {
-        implementation "org.auioc.mcmod:arnicalib:${minecraft_version}-${arnicalib_version}:deobf"
+        implementation fileTree(dir: 'libs2', include: ['*-deobf.jar', '*-api.jar', '*/*-deobf.jar', '*/*-api.jar'])
+        implementation fileTree(dir: 'libs', include: ['*-deobf.jar', '*-api.jar', '*/*-deobf.jar', '*/*-api.jar'])
+        // implementation "org.auioc.mcmod:arnicalib:${minecraft_version}-${arnicalib_version}:deobf"
     }
-}
-
-mixin {
-    add sourceSets.main, "${project.modId}.mixin-refmap.json"
-    config "${project.modId}.mixin.json"
 }
 
 apply from: 'gradle/b.gradle'

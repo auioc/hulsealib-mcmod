@@ -5,15 +5,15 @@ name: dev-build
 
 on:
     push:
-        branches:
-            - 1.18-forge
+        branches-ignore:
+            - 'test*'
         tags-ignore:
             - 'v*'
 
 jobs:
     build:
         name: Build
-        if: "!startsWith(github.event.head_commit.message, 'release')"
+        if: ${{ !startsWith(github.event.head_commit.message, 'release') }}
         runs-on: ubuntu-latest
 
         steps:
