@@ -1,12 +1,12 @@
 modLoader="javafml"
-loaderVersion="[40,)"
+loaderVersion="[47,)"
 license="GNU GPLv3"
 issueTrackerURL="https://github.com/auioc/hulsealib-mcmod/issues"
 
 [[mods]]
 modId="hulsealib"
 version="${file.jarVersion}"
-updateJSONURL="https://hi.auioc.org/hulsealib-mcmod/update/1.18.2.json"
+updateJSONURL="https://hi.auioc.org/hulsealib-mcmod/update/1.20.1.json"
 displayName="HulseaLib"
 displayURL="http://hi.auioc.org/hulsealib-mcmod/"
 credits="AUIOC"
@@ -18,18 +18,18 @@ Shared library for AH's Minecraft mods.
 [[dependencies.hulsealib]]
     modId="forge"
     mandatory=true
-    versionRange="[40.1.0,)"
+    versionRange="[47,)"
     ordering="NONE"
     side="BOTH"
 [[dependencies.hulsealib]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.18.2,1.19)"
+    versionRange="[1.20.1,1.21)"
     ordering="NONE"
     side="BOTH"
 [[dependencies.hulsealib]]
     modId="arnicalib"
     mandatory=true
-    versionRange="[5.7.3,)"
+    versionRange="[6.0.0,)"
     ordering="NONE"
     side="BOTH"

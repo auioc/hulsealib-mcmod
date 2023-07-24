@@ -28,9 +28,7 @@ dependencies {
     if (findProject(':arnicalib') != null) {
         implementation project(':arnicalib')
     } else {
-        implementation fileTree(dir: 'libs2', include: ['*-deobf.jar', '*-api.jar', '*/*-deobf.jar', '*/*-api.jar'])
-        implementation fileTree(dir: 'libs', include: ['*-deobf.jar', '*-api.jar', '*/*-deobf.jar', '*/*-api.jar'])
-        // implementation "org.auioc.mcmod:arnicalib:${minecraft_version}-${arnicalib_version}:deobf"
+        implementation "org.auioc.mcmod:arnicalib:${minecraft_version}-${arnicalib_version}:deobf"
     }
 }
 
