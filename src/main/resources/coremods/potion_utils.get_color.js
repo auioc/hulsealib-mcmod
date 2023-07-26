@@ -66,7 +66,7 @@ function initializeCoreMod() {
                     )
                 );
 
-                print(ASMAPI.methodNodeToString(methodNode));
+                // print(ASMAPI.methodNodeToString(methodNode));
                 return methodNode;
             },
         },
