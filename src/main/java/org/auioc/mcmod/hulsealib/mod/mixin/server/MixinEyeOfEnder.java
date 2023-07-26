@@ -1,6 +1,5 @@
 package org.auioc.mcmod.hulsealib.mod.mixin.server;
 
-import java.util.Random;
 import java.util.function.Function;
 import org.auioc.mcmod.hulsealib.mod.mixinapi.server.IMixinEyeOfEnder;
 import org.objectweb.asm.Opcodes;
@@ -8,6 +7,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.projectile.EyeOfEnder;
@@ -29,7 +29,7 @@ public abstract class MixinEyeOfEnder extends Entity implements IMixinEyeOfEnder
     }
 
     @Override
-    public void setSurvivable(Function<Random, Boolean> survivable) {
+    public void setSurvivable(Function<RandomSource, Boolean> survivable) {
         this.surviveAfterDeath = survivable.apply(this.random);
     }
 

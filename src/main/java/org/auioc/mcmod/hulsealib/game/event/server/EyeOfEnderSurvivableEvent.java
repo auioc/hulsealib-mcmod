@@ -1,15 +1,15 @@
 package org.auioc.mcmod.hulsealib.game.event.server;
 
-import java.util.Random;
 import java.util.function.Function;
 import org.auioc.mcmod.arnicalib.game.event.server.ServerPlayerEvent;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.projectile.EyeOfEnder;
 
 public class EyeOfEnderSurvivableEvent extends ServerPlayerEvent {
 
     private final EyeOfEnder eye;
-    private Function<Random, Boolean> survivable;
+    private Function<RandomSource, Boolean> survivable;
 
     public EyeOfEnderSurvivableEvent(ServerPlayer player, EyeOfEnder eye) {
         super(player);
@@ -21,11 +21,11 @@ public class EyeOfEnderSurvivableEvent extends ServerPlayerEvent {
         return this.eye;
     }
 
-    public Function<Random, Boolean> getSurvivable() {
+    public Function<RandomSource, Boolean> getSurvivable() {
         return this.survivable;
     }
 
-    public void setSurvivable(Function<Random, Boolean> survivable) {
+    public void setSurvivable(Function<RandomSource, Boolean> survivable) {
         this.survivable = survivable;
     }
 

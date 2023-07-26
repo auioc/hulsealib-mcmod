@@ -13,7 +13,7 @@ public class PiglinStanceEvent extends LivingEvent {
     }
 
     public LivingEntity getTarget() {
-        return super.getEntityLiving();
+        return super.getEntity();
     }
 
     public MobStance getStance() {

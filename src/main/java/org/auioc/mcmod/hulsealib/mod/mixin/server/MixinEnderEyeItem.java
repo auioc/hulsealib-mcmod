@@ -17,7 +17,7 @@ import net.minecraft.world.entity.projectile.EyeOfEnder;
 import net.minecraft.world.item.EnderEyeItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.phys.BlockHitResult;
 
 @Mixin(value = EnderEyeItem.class)
 public class MixinEnderEyeItem {
@@ -37,7 +37,7 @@ public class MixinEnderEyeItem {
     private void use(
         Level p_41184_, Player p_41185_, InteractionHand p_41186_,
         CallbackInfoReturnable<InteractionResultHolder> cir,
-        ItemStack itemstack, HitResult hitresult, ServerLevel serverlevel, BlockPos blockpos, EyeOfEnder eyeofender
+        ItemStack itemstack, BlockHitResult blockhitresult, ServerLevel serverlevel, BlockPos blockpos, EyeOfEnder eyeofender
     ) {
         ((IMixinEyeOfEnder) eyeofender).setSurvivable(HLServerEventFactory.onEyeOfEnderSetSurvivable((ServerPlayer) p_41185_, eyeofender));
     }

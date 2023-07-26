@@ -3,6 +3,7 @@ package org.auioc.mcmod.hulsealib.mod.common.network.packet.client;
 import org.auioc.mcmod.arnicalib.base.phys.Shape;
 import org.auioc.mcmod.arnicalib.game.network.IHPacket;
 import org.auioc.mcmod.arnicalib.game.particle.ParticlePainterOptions;
+import org.auioc.mcmod.arnicalib.game.registry.RegistryUtils;
 import org.auioc.mcmod.hulsealib.game.particle.ClientParticlePainterAdapter;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleType;
@@ -35,7 +36,7 @@ public class ClientboundDrawParticleShapePacket implements IHPacket {
     public void encode(FriendlyByteBuf buffer) {
         buffer.writeEnum(this.shape);
         buffer.writeDouble(this.options.stepLength());
-        buffer.writeResourceLocation(this.options.particle().getType().getRegistryName());
+        buffer.writeResourceLocation(RegistryUtils.id(this.options.particle().getType()));
         this.options.particle().writeToNetwork(buffer);
         buffer.writeBoolean(this.options.force());
         buffer.writeNbt(this.data);

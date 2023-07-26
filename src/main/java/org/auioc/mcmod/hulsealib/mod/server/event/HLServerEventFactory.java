@@ -1,8 +1,6 @@
 package org.auioc.mcmod.hulsealib.mod.server.event;
 
 import java.util.List;
-import java.util.Random;
-import java.util.UUID;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 import org.auioc.mcmod.arnicalib.game.entity.MobStance;
@@ -14,10 +12,8 @@ import org.auioc.mcmod.hulsealib.game.event.server.PiglinStanceEvent;
 import org.auioc.mcmod.hulsealib.game.event.server.PreBowReleaseEvent;
 import org.auioc.mcmod.hulsealib.game.event.server.PreCrossbowReleaseEvent;
 import org.auioc.mcmod.hulsealib.game.event.server.PreFishingRodCastEvent;
-import org.auioc.mcmod.hulsealib.game.event.server.ServerPlayerSendMessageEvent;
-import net.minecraft.network.chat.ChatType;
-import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.animal.Cat;
@@ -45,7 +41,7 @@ public final class HLServerEventFactory {
     /**
      * @see org.auioc.mcmod.hulsealib.mod.mixin.server.MixinEnderEyeItem#use
      */
-    public static Function<Random, Boolean> onEyeOfEnderSetSurvivable(ServerPlayer player, EyeOfEnder eye) {
+    public static Function<RandomSource, Boolean> onEyeOfEnderSetSurvivable(ServerPlayer player, EyeOfEnder eye) {
         var event = new EyeOfEnderSurvivableEvent(player, eye);
         BUS.post(event);
         return event.getSurvivable();
@@ -63,7 +59,7 @@ public final class HLServerEventFactory {
     /**
      * Coremod hulsealib.item_stack.hurt
      */
-    public static int onItemHurt(ItemStack itemStack, int damage, Random random, @Nullable ServerPlayer player) {
+    public static int onItemHurt(ItemStack itemStack, int damage, RandomSource random, @Nullable ServerPlayer player) {
         var event = new ItemHurtEvent(itemStack, damage, random, player);
         BUS.post(event);
         return event.getDamage();
@@ -87,13 +83,6 @@ public final class HLServerEventFactory {
         var event = new PiglinStanceEvent(target);
         BUS.post(event);
         return event.getStance();
-    }
-
-    /**
-     * @see org.auioc.mcmod.hulsealib.mod.mixin.server.MixinServerPlayer#onSendMessage
-     */
-    public static boolean onServerPlayerSendMessage(ServerPlayer player, Component message, ChatType type, UUID uuid) {
-        return BUS.post(new ServerPlayerSendMessageEvent(player, message, type, uuid));
     }
 
     /**

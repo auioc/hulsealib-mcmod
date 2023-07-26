@@ -3,12 +3,10 @@
     "package": "org.auioc.mcmod.hulsealib.mod.mixin",
     "compatibilityLevel": "JAVA_17",
     "mixins": [
-        "common.MixinCreativeModeTab",
         "common.MixinFoodData",
         "common.MixinItemStack",
         "common.MixinPistonBaseBlock",
         "common.MixinPlayer",
-        "server.MixinServerPlayer",
         "server.MixinLivingEntity",
         "server.MixinCatRelaxOnOwnerGoal",
         "server.MixinPiglinAi",

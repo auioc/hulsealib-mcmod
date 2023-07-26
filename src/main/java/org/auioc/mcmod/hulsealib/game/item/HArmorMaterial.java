@@ -3,7 +3,7 @@ package org.auioc.mcmod.hulsealib.game.item;
 import java.util.function.Supplier;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.LazyLoadedValue;
-import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -63,14 +63,13 @@ public class HArmorMaterial implements ArmorMaterial {
     }
 
 
-
     @Override
-    public int getDurabilityForSlot(EquipmentSlot slotType) {
+    public int getDurabilityForType(ArmorItem.Type armorType) {
         return this.durability;
     }
 
     @Override
-    public int getDefenseForSlot(EquipmentSlot slotType) {
+    public int getDefenseForType(ArmorItem.Type armorType) {
         return this.defense;
     }
 

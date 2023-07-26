@@ -55,13 +55,13 @@ public class UsableItem extends Item {
     }
 
     @Override
-    public void onUsingTick(ItemStack stack, LivingEntity livingEntity, int remainingTicks) {}
+    public void onUseTick(Level level, LivingEntity living, ItemStack itemStack, int remainingTicks) {}
 
     @Override
-    public void releaseUsing(ItemStack itemStack, Level level, LivingEntity livingEntity, int remainingTicks) {}
+    public void releaseUsing(ItemStack itemStack, Level level, LivingEntity living, int remainingTicks) {}
 
     @Override
-    public ItemStack finishUsingItem(ItemStack itemStack, Level level, LivingEntity livingEntity) {
+    public ItemStack finishUsingItem(ItemStack itemStack, Level level, LivingEntity living) {
         return itemStack;
     }
 

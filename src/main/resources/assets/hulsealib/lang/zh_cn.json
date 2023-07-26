@@ -1,22 +1,3 @@
 {
-    "hulsealib.title": "HulseaLib",
-
-    "itemGroup.vanillaHiddenItems": "原版隐藏物品",
-
-    "hulsealib.argument.creative_mode_tab.unknown": "未知的创造模式物品栏标签\"%s\"",
-
-    "hulsealib.gui.custom_model.reload": "重载",
-    "hulsealib.gui.custom_model.mode": "模式",
-    "hulsealib.gui.custom_model.data_invalid": "存在无效的数据",
-    "hulsealib.gui.custom_model.copy_command_only": "仅复制命令",
-    "hulsealib.gui.custom_model.modify_directly": "直接修改",
-    "hulsealib.gui.custom_model.model_id": "模型",
-    "hulsealib.gui.custom_model.translation": "平移",
-    "hulsealib.gui.custom_model.rotation": "旋转",
-    "hulsealib.gui.custom_model.scale": "缩放",
-
-    "hulsealib.gui.custom_block.shape": "形状",
-    "hulsealib.gui.custom_block.light": "亮度",
-
-    "hulsealib.gui.custom_entity.kill": "删除"
+    "hulsealib.title": "HulseaLib"
 }

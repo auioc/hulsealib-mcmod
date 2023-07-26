@@ -1,10 +1,8 @@
 package org.auioc.mcmod.hulsealib;
 
-import org.apache.commons.lang3.tuple.Pair;
 import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.Marker;
 import org.auioc.mcmod.arnicalib.base.log.LogUtil;
-import org.auioc.mcmod.arnicalib.base.version.VersionUtils;
+import org.auioc.mcmod.arnicalib.game.mod.HModUtil;
 import org.auioc.mcmod.hulsealib.mod.Initialization;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.fml.common.Mod;
@@ -18,17 +16,15 @@ public final class HulseaLib {
     public static final String FULL_VERSION;
 
     public static final Logger LOGGER = LogUtil.getLogger(MOD_NAME);
-    private static final Marker CORE = LogUtil.getMarker("CORE");
 
     public HulseaLib() {
         Initialization.init();
     }
 
     static {
-        Pair<String, String> version = VersionUtils.getModVersion(HulseaLib.class);
-        MAIN_VERSION = version.getLeft();
-        FULL_VERSION = version.getRight();
-        LOGGER.info(CORE, "Version: " + MAIN_VERSION + " (" + FULL_VERSION + ")");
+        final var version = HModUtil.getVersion(HulseaLib.class, LOGGER);
+        MAIN_VERSION = version.main;
+        FULL_VERSION = version.full;
     }
 
     public static ResourceLocation id(String path) {
