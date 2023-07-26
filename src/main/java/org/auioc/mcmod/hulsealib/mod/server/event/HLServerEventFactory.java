@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 import org.auioc.mcmod.arnicalib.game.entity.MobStance;
-import org.auioc.mcmod.hulsealib.game.event.server.CatMorningGiftChanceEvent;
+import org.auioc.mcmod.hulsealib.game.event.server.CatMorningGiftEvent;
 import org.auioc.mcmod.hulsealib.game.event.server.EyeOfEnderSurvivableEvent;
 import org.auioc.mcmod.hulsealib.game.event.server.ItemHurtEvent;
 import org.auioc.mcmod.hulsealib.game.event.server.LivingEatAddEffectEvent;
@@ -12,6 +12,7 @@ import org.auioc.mcmod.hulsealib.game.event.server.PiglinStanceEvent;
 import org.auioc.mcmod.hulsealib.game.event.server.PreBowReleaseEvent;
 import org.auioc.mcmod.hulsealib.game.event.server.PreCrossbowReleaseEvent;
 import org.auioc.mcmod.hulsealib.game.event.server.PreFishingRodCastEvent;
+import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -30,12 +31,24 @@ public final class HLServerEventFactory {
     private static final IEventBus BUS = MinecraftForge.EVENT_BUS;
 
     /**
-     * @see org.auioc.mcmod.hulsealib.mod.mixin.server.MixinCatRelaxOnOwnerGoal#modifyConstant_stop
+     * @see org.auioc.mcmod.hulsealib.mod.mixin.server.MixinCatRelaxOnOwnerGoal#stop
      */
-    public static double onCatSetMorningGiftChance(Cat cat, Player ownerPlayer) {
-        var event = new CatMorningGiftChanceEvent(cat, ownerPlayer);
+    public static boolean checkCatMorningGiftCondition(Cat cat, Player owner) {
+        var event = new CatMorningGiftEvent.Check(cat, owner);
+        boolean canceled = BUS.post(event);
+        if (canceled) {
+            return false;
+        }
+        return event.check();
+    }
+
+    /**
+     * @see org.auioc.mcmod.hulsealib.mod.mixin.server.MixinCatRelaxOnOwnerGoal#redirect_giveMorningGift_getRandomItems
+     */
+    public static ObjectArrayList<ItemStack> preCatMorningGift(Cat cat, Player owner, ObjectArrayList<ItemStack> loots) {
+        var event = new CatMorningGiftEvent.Pre(cat, owner, loots);
         BUS.post(event);
-        return event.getChance();
+        return event.getLoots();
     }
 
     /**
