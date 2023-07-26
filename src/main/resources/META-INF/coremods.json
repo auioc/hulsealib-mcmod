@@ -1,6 +1,6 @@
 {
+    "hulsealib.cross_bow_item.shoot_projectile": "coremods/cross_bow_item.shoot_projectile.js",
     "hulsealib.fishing_rod_item.use": "coremods/fishing_rod_item.use.js",
     "hulsealib.item_stack.hurt": "coremods/item_stack.hurt.js",
-    "hulsealib.cross_bow_item.shoot_projectile": "coremods/cross_bow_item.shoot_projectile.js",
     "hulsealib.potion_utils.get_color": "coremods/potion_utils.get_color.js"
 }

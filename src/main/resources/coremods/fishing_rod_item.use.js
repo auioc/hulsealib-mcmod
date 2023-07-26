@@ -96,20 +96,20 @@ function initializeCoreMod() {
 
 //! SRG <-> MCP
 /*
-    m_7203_    use    net/minecraft/world/item/ArmorItem;use(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/InteractionResultHolder;
+    m_7203_    use    net/minecraft/world/item/FishingRodItem/use;use(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/InteractionResultHolder;
 */
 
 //! LocalVariableTable
 /*
     Slot    Name         Signature
     5       i            I
-    5       j            I
-    6       k            I
-    0       this         Lnet/minecraft/world/item/FishingRodItem;
+~   5       k            I
+~   6       j            I
+~   0       this         Lnet/minecraft/world/item/FishingRodItem;
     1       p_41290_     Lnet/minecraft/world/level/Level;
-    2       p_41291_     Lnet/minecraft/world/entity/player/Player;
+~   2       p_41291_     Lnet/minecraft/world/entity/player/Player;
     3       p_41292_     Lnet/minecraft/world/InteractionHand;
-    4       itemstack    Lnet/minecraft/world/item/ItemStack;
+~   4       itemstack    Lnet/minecraft/world/item/ItemStack;
 +   7       preEvent     Lorg/auioc/mcmod/hulsealib/game/event/server/PreFishingRodCastEvent;
 */
 

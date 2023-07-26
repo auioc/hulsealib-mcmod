@@ -66,15 +66,15 @@ function initializeCoreMod() {
     11      projectile           Lnet/minecraft/world/entity/projectile/Projectile;
     12      crossbowattackmob    Lnet/minecraft/world/entity/monster/CrossbowAttackMob;
     12      vec31                Lnet/minecraft/world/phys/Vec3;
-    13      quaternion           Lcom/mojang/math/Quaternion;
+    13      quaternionf          Lorg/joml/Quaternionf;
     14      vec3                 Lnet/minecraft/world/phys/Vec3;
-    15      vector3f             Lcom/mojang/math/Vector3f;
+    15      vector3f             Lorg/joml/Vector3f;
     10      flag                 Z
-    11      projectile           Lnet/minecraft/world/entity/projectile/Projectile;
-    0       p_40895_             Lnet/minecraft/world/level/Level;
-    1       p_40896_             Lnet/minecraft/world/entity/LivingEntity;
+~   11      projectile           Lnet/minecraft/world/entity/projectile/Projectile;
+~   0       p_40895_             Lnet/minecraft/world/level/Level;
+~   1       p_40896_             Lnet/minecraft/world/entity/LivingEntity;
     2       p_40897_             Lnet/minecraft/world/InteractionHand;
-    3       p_40898_             Lnet/minecraft/world/item/ItemStack;
+~   3       p_40898_             Lnet/minecraft/world/item/ItemStack;
     4       p_40899_             Lnet/minecraft/world/item/ItemStack;
     5       p_40900_             F
     6       p_40901_             Z
@@ -85,7 +85,7 @@ function initializeCoreMod() {
 
 //! Code
 /*
-    public ItemStack run(ItemStack p_79913_, LootContext p_79914_) {
+    public ItemStack run(Level p_40895_, LivingEntity p_40896_, InteractionHand p_40897_, ItemStack p_40898_, ItemStack p_40899_, float p_40900_, boolean p_40901_, float p_40902_, float p_40903_, float p_40904_) {
         if (!p_40895_.isClientSide) {
         //_...
 +       org.auioc.mcmod.hulsealib.mod.server.event.HLServerEventFactory.preCrossbowRelease(p_40896_, p_40898_, projectile);
@@ -95,8 +95,8 @@ function initializeCoreMod() {
     }
 *   ========== ByteCode ==========   *
     //_ ...
-    L22
-        LINENUMBER 223 L22
+    L21
+        LINENUMBER 221 L21
 +       ALOAD 1
 +       ALOAD 3
 +       ALOAD 11
@@ -105,7 +105,7 @@ function initializeCoreMod() {
         ALOAD 11
         INVOKEVIRTUAL net/minecraft/world/level/Level.addFreshEntity (Lnet/minecraft/world/entity/Entity;)Z
         POP
-    L23
-        LINENUMBER 224 L23
+    L22
+        LINENUMBER 222 L22
     //_ ...
 */

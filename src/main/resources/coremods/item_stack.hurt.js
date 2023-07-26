@@ -13,9 +13,9 @@ function initializeCoreMod() {
             target: {
                 type: 'METHOD',
                 class: 'net.minecraft.world.item.ItemStack',
-                methodName: ASMAPI.mapMethod('m_41629_'),
+                methodName: ASMAPI.mapMethod('m_220157_'),
                 methodDesc:
-                    '(ILjava/util/Random;Lnet/minecraft/server/level/ServerPlayer;)Z',
+                    '(ILnet/minecraft/util/RandomSource;Lnet/minecraft/server/level/ServerPlayer;)Z',
             },
             transformer: function (methodNode) {
                 var toInject = new InsnList();
@@ -29,7 +29,7 @@ function initializeCoreMod() {
                             Opcodes.INVOKESTATIC,
                             'org/auioc/mcmod/hulsealib/mod/server/event/HLServerEventFactory',
                             'onItemHurt',
-                            '(Lnet/minecraft/world/item/ItemStack;ILjava/util/Random;Lnet/minecraft/server/level/ServerPlayer;)I',
+                            '(Lnet/minecraft/world/item/ItemStack;ILnet/minecraft/util/RandomSource;Lnet/minecraft/server/level/ServerPlayer;)I',
                             false
                         )
                     );
@@ -54,7 +54,7 @@ function initializeCoreMod() {
 
 //! SRG <-> MCP
 /*
-    m_41629_    hurt    net/minecraft/world/item/ItemStack;hurt(ILjava/util/Random;Lnet/minecraft/server/level/ServerPlayer;)Z
+    m_220157_    hurt    net/minecraft/world/item/ItemStack;hurt(ILnet/minecraft/util/RandomSource;Lnet/minecraft/server/level/ServerPlayer;)Z
 */
 
 //! LocalVariableTable
@@ -65,19 +65,19 @@ function initializeCoreMod() {
     5       j           I
     4       l           I
     0       this        Lnet/minecraft/world/item/ItemStack;
-    1       p_41630_    I
-    2       p_41631_    Ljava/util/Random;
-    3       p_41632_    Lnet/minecraft/server/level/ServerPlayer;
+    1       p_220158_   I
+    2       p_220159_   Lnet/minecraft/util/RandomSource;
+    3       p_220160_   Lnet/minecraft/server/level/ServerPlayer;
 */
 
 //! Code
 /*
-    public boolean hurt(int p_41630_, Random p_41631_, @Nullable ServerPlayer p_41632_) {
+    public boolean hurt(int p_220158_, RandomSource p_220159_, @Nullable ServerPlayer p_220160_) {
         if (!this.isDamageableItem()) {
             return false;
         } else {
-+           p_41630_ = org.auioc.mcmod.hulsealib.mod.server.event.HLServerEventFactory.onItemHurt(this, p_41630_, p_41631_, p_41632_);
-            if (p_41630_ > 0) {
++           p_220158_ = org.auioc.mcmod.hulsealib.mod.server.event.HLServerEventFactory.onItemHurt(this, p_220158_, p_220159_, p_220160_);
+            if (p_220158_ > 0) {
                 //_ ...
             }
             //_ ...
@@ -85,27 +85,27 @@ function initializeCoreMod() {
     }
 *   ========== ByteCode ==========   *
     L0
-        LINENUMBER 308 L0
+        LINENUMBER 331 L0
         ALOAD 0
         INVOKEVIRTUAL net/minecraft/world/item/ItemStack.isDamageableItem ()Z
         IFNE L1
     L2
-        LINENUMBER 309 L2
+        LINENUMBER 332 L2
         ICONST_0
         IRETURN
     L1
-        LINENUMBER 311 L1
+        LINENUMBER 334 L1
     FRAME SAME
 +       ALOAD 0
 +       ILOAD 1
 +       ALOAD 2
 +       ALOAD 3
-+       INVOKESTATIC org/auioc/mcmod/hulsealib/mod/server/event/HLServerEventFactory.onItemHurt (Lnet/minecraft/world/item/ItemStack;ILjava/util/Random;Lnet/minecraft/server/level/ServerPlayer;)I
++       INVOKESTATIC org/auioc/mcmod/hulsealib/mod/server/event/HLServerEventFactory.onItemHurt (Lnet/minecraft/world/item/ItemStack;ILnet/minecraft/util/RandomSource;Lnet/minecraft/server/level/ServerPlayer;)I
 +       ISTORE 1
         ILOAD 1
         IFLE L3
     L4
-        LINENUMBER 312 L4
+        LINENUMBER 335 L4
     //_ ...
 
 -   MAXSTACK = 5

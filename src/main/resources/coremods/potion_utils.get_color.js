@@ -66,7 +66,7 @@ function initializeCoreMod() {
                     )
                 );
 
-                // print(ASMAPI.methodNodeToString(methodNode));
+                print(ASMAPI.methodNodeToString(methodNode));
                 return methodNode;
             },
         },
@@ -114,7 +114,7 @@ function initializeCoreMod() {
 *   ========== ByteCode ==========   *
     //_ ...
     L12
-        LINENUMBER 101 L12
+        LINENUMBER 99 L12
         ALOAD 7
 -       INVOKEVIRTUAL net/minecraft/world/effect/MobEffectInstance.getEffect ()Lnet/minecraft/world/effect/MobEffect;
 -       INVOKEVIRTUAL net/minecraft/world/effect/MobEffect.getColor ()I
@@ -122,6 +122,6 @@ function initializeCoreMod() {
 +       INVOKESTATIC org/auioc/mcmod/hulsealib/game/effect/ICustomColorMobEffect.coremod_getColor (Lnet/minecraft/world/effect/MobEffectInstance;I)I (itf)
         ISTORE 8
     L13
-        LINENUMBER 102 L13
+        LINENUMBER 100 L13
     //_ ...
 */
