@@ -1,6 +1,5 @@
 package org.auioc.mcmod.hulsealib.mod.client;
 
-import org.auioc.mcmod.hulsealib.mod.client.event.HLClientModEventHandler;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
@@ -22,11 +21,8 @@ public final class ClientInitialization {
 
     private static void registerConfig() {}
 
-    private static void modSetup() {
-        modEventBus.register(HLClientModEventHandler.class);
-    }
+    private static void modSetup() {}
 
     private static void forgeSetup() {}
-
 
 }
