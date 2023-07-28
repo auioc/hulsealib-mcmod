@@ -2,6 +2,7 @@ package org.auioc.mcmod.hulsealib;
 
 import org.apache.logging.log4j.Logger;
 import org.auioc.mcmod.arnicalib.base.log.LogUtil;
+import org.auioc.mcmod.arnicalib.base.version.HVersion;
 import org.auioc.mcmod.arnicalib.game.mod.HModUtil;
 import org.auioc.mcmod.hulsealib.mod.Initialization;
 import net.minecraft.resources.ResourceLocation;
@@ -12,19 +13,13 @@ public final class HulseaLib {
 
     public static final String MOD_ID = "hulsealib";
     public static final String MOD_NAME = "HulseaLib";
-    public static final String MAIN_VERSION;
-    public static final String FULL_VERSION;
 
     public static final Logger LOGGER = LogUtil.getLogger(MOD_NAME);
 
+    public static final HVersion VERSION = HModUtil.getVersion(HulseaLib.class, LOGGER);
+
     public HulseaLib() {
         Initialization.init();
-    }
-
-    static {
-        final var version = HModUtil.getVersion(HulseaLib.class, LOGGER);
-        MAIN_VERSION = version.main;
-        FULL_VERSION = version.full;
     }
 
     public static ResourceLocation id(String path) {
