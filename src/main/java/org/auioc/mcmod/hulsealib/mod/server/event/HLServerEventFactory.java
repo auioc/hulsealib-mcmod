@@ -33,7 +33,7 @@ public final class HLServerEventFactory {
     /**
      * @see org.auioc.mcmod.hulsealib.mod.mixin.server.MixinCatRelaxOnOwnerGoal#stop
      */
-    public static boolean checkCatMorningGiftCondition(Cat cat, Player owner) {
+    public static boolean checkCatMorningGiftCondition(Cat cat, Player owner) {  // TODO rename onCatMorningGiftConditionCheck
         var event = new CatMorningGiftEvent.Check(cat, owner);
         boolean canceled = BUS.post(event);
         if (canceled) {

@@ -32,7 +32,7 @@ public class CatMorningGiftEvent extends LivingEvent {
     // ============================================================================================================== //
 
     @Cancelable
-    public static class Check extends CatMorningGiftEvent {
+    public static class Check extends CatMorningGiftEvent { // TODO better conditions impl?
 
         public static final LinkedHashMap<ResourceLocation, BiPredicate<Cat, Player>> DEFAULT_CONDITIONS = new LinkedHashMap<>(3) {
             {
