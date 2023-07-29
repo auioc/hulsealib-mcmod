@@ -2,9 +2,6 @@
 
 <div align="center">
 
-! WIP: 1.20.1 PORTING !
-<br/>
-
 Shared library for AH's Minecraft mods.
 
 [![GitHub license](https://img.shields.io/github/license/auioc/hulsealib-mcmod?style=flat-square)](/LICENSE)
