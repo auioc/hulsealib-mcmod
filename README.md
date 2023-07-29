@@ -23,6 +23,7 @@ Shared library for AH's Minecraft mods.
 ## Maintainers
 
 - [@WakelessSloth56](https://github.com/WakelessSloth56)
+- [@LainIO24](https://github.com/lainio24)
 
 ## Credits
 
