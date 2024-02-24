@@ -4,6 +4,8 @@
 
 Shared library for AH's Minecraft mods.
 
+**WARNING: This mod has been deprecated from MC 1.20.4, use ArnicaLib instead!**
+
 [![GitHub license](https://img.shields.io/github/license/auioc/hulsealib-mcmod?style=flat-square)](/LICENSE)
 [![GitHub release](https://img.shields.io/github/v/release/auioc/hulsealib-mcmod?style=flat-square)](https://github.com/auioc/hulsealib-mcmod/releases/latest)
 [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/auioc/hulsealib-mcmod/dev-build.yml?branch=1.20-forge&label=dev%20build&style=flat-square)](https://github.com/auioc/hulsealib-mcmod/actions/workflows/dev-build.yml)
